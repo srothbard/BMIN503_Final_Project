@@ -16,11 +16,9 @@ Use this template to complete your project throughout the course. Your Final Pro
 
 Give a brief a description of your project and its goal(s), what data you are using to complete it, and what two faculty/staff in different fields you have spoken to about your project with a brief summary of what you learned from each person. Include a link to your final project GitHub repository.
 
-For my final project, it is my goal to understand the relationship between upper respiratory tract infection (URTI) during pregnancy and adverse birth outcomes (defined by preterm birth, low birthweight, or small for gestational age). Specifically, I will be investigating this question among HIV-uninfected pregnant women who received monthly preventative treatment of malaria, using data from the PROMOTE Birth Cohort 3 Randomized Controlled Trial conducted in the Busia Distric of Uganda.
+For my final project, it is my goal to understand the relationship between pre-conception iron biomarkers and miscarriage risk. Specifically, I will be investigating this question among women with prior pregnancy loss, using data from the EAGeR (Effects of Aspirin in Gestation and Reproduction) trial.
 
-Grant Dorsey, Moses Kamya, Diane V. Havlir, et al. Dataset: PROMOTE Birth Cohort 3 Randomized Controlled Trial. ClinEpiDB. 30 August 2022, Release 24 (https://clinepidb.org/ce/app/workspace/analyses/DS_8786631aaf/new)
-
-Two faculty members I plan to meet with to discuss this project:
+Two faculty members I met with to discuss this project:
 Sunni Mumford, Professor & Deputy Director, Epidemiology
 Ellen Caniglia, Assistant Professor, Epidemiology
 
