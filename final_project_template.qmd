@@ -18,12 +18,10 @@ Give a brief a description of your project and its goal(s), what data you are us
 
 For my final project, it is my goal to understand the relationship between pre-conception iron biomarkers and miscarriage risk. Specifically, I will be investigating this question among women with prior pregnancy loss, using data from the EAGeR (Effects of Aspirin in Gestation and Reproduction) trial.
 
-Two faculty members I met with to discuss this project:
-Sunni Mumford, Professor & Deputy Director, Epidemiology
-Ellen Caniglia, Assistant Professor, Epidemiology
+Two faculty members I met with to discuss this project: 
+Sunni Mumford, Professor & Deputy Director, Epidemiology Ellen Caniglia, Assistant Professor, Epidemiology
 
-Brief summary of what I learned from each of them:
-FILL IN LATER
+Sunni Mumford has worked with EAGeR data before and informed me about the EAGeR data structure and best practices for the analyses. We discussed the feasibility of my research question; data is available within EAGeR on both iron biomarkers and miscarriage. Iron biomarker data is from baseline (preconception) and pregnancy loss data is collected during follow-up with the time metric being menstrual cycle (up to 6 cycles). Ellen Caniglia encouraged me to perform a literature review to determine which iron biomarker may be best to use and after discussion, we decided on serum ferritin. With both Dr. Mumford and Dr. Caniglia, I discussed potential confounders based on the literature.
 
 [srothbard](https://github.com/srothbard/BMIN503_Final_Project)
 
