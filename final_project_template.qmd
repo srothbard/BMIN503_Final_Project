@@ -10,35 +10,180 @@ embed-resources: true
 
 ------------------------------------------------------------------------
 
-Use this template to complete your project throughout the course. Your Final Project presentation will be based on the contents of this document. Replace the title/name above and text below with your own, but keep the headers. Feel free to change the theme and other display settings, although this is not required. I added a new sentence
-
 ## Overview {#sec-overview}
-
-Give a brief a description of your project and its goal(s), what data you are using to complete it, and what two faculty/staff in different fields you have spoken to about your project with a brief summary of what you learned from each person. Include a link to your final project GitHub repository.
 
 For my final project, it is my goal to understand the relationship between pre-conception iron biomarkers and miscarriage risk. Specifically, I will be investigating this question among women with prior pregnancy loss, using data from the EAGeR (Effects of Aspirin in Gestation and Reproduction) trial.
 
-Two faculty members I met with to discuss this project: 
-Sunni Mumford, Professor & Deputy Director, Epidemiology Ellen Caniglia, Assistant Professor, Epidemiology
+Two faculty members I met with to discuss this project: Sunni Mumford, Professor & Deputy Director, Epidemiology Ellen Caniglia, Assistant Professor, Epidemiology
 
-Sunni Mumford has worked with EAGeR data before and informed me about the EAGeR data structure and best practices for the analyses. We discussed the feasibility of my research question; data is available within EAGeR on both iron biomarkers and miscarriage. Iron biomarker data is from baseline (preconception) and pregnancy loss data is collected during follow-up with the time metric being menstrual cycle (up to 6 cycles). Ellen Caniglia encouraged me to perform a literature review to determine which iron biomarker may be best to use and after discussion, we decided on serum ferritin. With both Dr. Mumford and Dr. Caniglia, I discussed potential confounders based on the literature.
+Sunni Mumford has worked with EAGeR data before and informed me about the EAGeR data structure and best practices for the analyses. We discussed the feasibility of my research question; data is available within EAGeR on both iron biomarkers and miscarriage. Iron biomarker data is from baseline (preconception) and pregnancy loss data is collected during follow-up with the time metric being gestational weeks until miscarriage or birth. Ellen Caniglia encouraged me to perform a literature review to determine which iron biomarker may be best to use and after discussion, we decided on serum ferritin. With both Dr. Mumford and Dr. Caniglia, I discussed potential confounders based on the literature.
 
 [srothbard](https://github.com/srothbard/BMIN503_Final_Project)
 
 ## Introduction {#sec-introduction}
 
-Describe the problem addressed, its significance, and some background to motivate the problem. This should extend what is in the @sec-overview.
-
-Explain why your problem is interdisciplinary, what fields can contribute to its understanding, and incorporate background related to what you learned from meeting with faculty/staff.
+  Miscarriage, defined as the spontaneous loss of a pregnancy before 20 weeks of gestation, is a common and emotionally devastating outcome, affecting approximately 10–20% of recognized pregnancies. Despite its prevalence, the underlying causes of miscarriage are not fully understood, particularly among women with a history of pregnancy loss. Iron, an essential micronutrient involved in oxygen transport, hormone synthesis, and cellular function, plays a critical role in reproductive health. Iron deficiency—even in the absence of anemia—has been associated with impaired implantation, placental development, and increased miscarriage risk. Serum ferritin, a biomarker of iron stores, is particularly relevant in assessing iron status in women of reproductive age. This final project aims to investigate whether preconception serum ferritin levels are associated with miscarriage risk among women with prior pregnancy loss, using data from the EAGeR (Effects of Aspirin in Gestation and Reproduction) trial.
+  This research is inherently interdisciplinary, integrating perspectives from epidemiology, reproductive biology, nutrition science, and biostatistics. Epidemiological methods are essential for analyzing longitudinal data and identifying confounding factors, while reproductive biology provides insight into how iron status may influence implantation and early gestational development. Nutrition science contributes to understanding iron metabolism and its biomarkers, and biostatistics enables rigorous modeling of time-to-event outcomes. The EAGeR trial provides a unique opportunity to explore the relationship between serum ferritin and miscarriage, as it includes detailed data on preconception serum ferritin levels and prospective tracking of pregnancy outcomes by gestational week. Identifying relevant confounders such as age, BMI, and parity is essential for isolating the true effect of iron status, and integrating insights from epidemiology, nutrition science, and reproductive biology is critical to fully understanding this complex relationship.
 
 ## Methods {#sec-methods}
 
-Describe the data used and general methodological approach used to address the problem described in the @sec-introduction. Subsequently, incorporate full R code necessary to retrieve and clean data, and perform analysis. Be sure to include a description of code so that others (including your future self) can understand what you are doing and why.
+**Study Population**
+This study utilizes data from the Effects of Aspirin in Gestation and Reproduction (EAGeR) trial, a multi-site randomized controlled trial designed to evaluate the impact of low-dose aspirin on reproductive outcomes. The analytic sample includes 1,228 women aged 18–40 years who had experienced one or two prior pregnancy losses and were actively attempting to conceive. Participants were followed until miscarriage or birth occurred, with pregnancy outcomes tracked in gestational weeks.
+
+**Exposure Assessment**
+The primary exposure of interest is iron status, measured via serum ferritin concentrations at baseline (preconception). Serum ferritin was assessed using standardized immunoassays, with quality control procedures including re-testing of samples to ensure reliability. Serum ferritin is selected as the primary biomarker due to its clinical relevance and widespread use in assessing iron stores. Iron deficiency is commonly defined as serum ferritin <15 µg/L by the World Health Organization (WHO), but recent literature suggests a cutoff of <30 µg/L may improve sensitivity and specificity in both healthy and clinical populations. Ferritin levels are dichotomized at the <30 µg/L threshold for analysis.
+
+**Outcome Measurement**
+The primary outcome is miscarriage, defined as a chemical or clinical loss of pregnancy. This time-to-event metric aligns with the structure of the EAGeR trial, which tracked pregnancy outcomes in gestational weeks following conception.
+
+**Covariates**
+Potential confounders were identified through literature review and include:
+age, Body Mass Index (BMI), race/ethnicity, parity, household income, educational attainment, use of prenatal vitamins, and physical activity. Smoking status was inconsistently measured and is excluded from primary analyses.
+
+**Statistical Analysis**
+Descriptive statistics will summarize the distribution of serum ferritin and covariates. Table 1 will present baseline characteristics stratified by serum ferritin status (<30 µg/L vs. ≥30 µg/L). Missing data will be addressed using multiple imputation. Discrete-time Cox proportional hazards models will be used to estimate the association between serum ferritin levels and miscarriage. Initial models will be unadjusted, followed by adjusted models incorporating identified covariates. Sensitivity analyses will explore stratification by potential effect modifiers and using alternative ferritin cutoffs.
+
+```{r}
+#install and load packages
+install.packages("labelled")
+library(labelled)
+library(haven)
+library(dplyr)
+
+#Read in SAS dataset
+merged_all <- read_sas("C:\\Users\\sarahrot\\Box\\Sarah - EAGeR data\\merged_all.sas7bdat")
+
+#create a new data frame with transformations
+pretbl1 <- merged_all %>%
+  dplyr::mutate(
+    # Categories for serum ferritin
+    ferritin30cat = dplyr::case_when(
+      !is.na(ferritin) & ferritin < 30 ~ 1,
+      ferritin >= 30 ~ 2
+    ),
+    ferritin15cat = dplyr::case_when(
+      !is.na(ferritin) & ferritin < 15 ~ 1,
+      ferritin >= 15 ~ 2
+    ),
+    
+    # Rescaled continuous ferritin
+    ferritin5 = ferritin / 5,
+    
+    # Age categories
+    agecat = dplyr::case_when(
+      age > 18 & age < 23 ~ 1,
+      age >= 23 & age < 28 ~ 2,
+      age >= 28 & age < 33 ~ 3,
+      age >= 33 & age < 38 ~ 4,
+      age >= 38 ~ 5
+    ),
+    
+    # BMI categories
+    bmicat = dplyr::case_when(
+      is.na(BMI) ~ NA_real_,
+      BMI < 25 ~ 1,
+      BMI >= 25 & BMI <= 30 ~ 2,
+      BMI > 30 ~ 3
+    ),
+    
+    # Parity categories
+    parity = dplyr::case_when(
+      Preg_no_loss == 0 ~ 0,
+      Preg_no_loss %in% c(1, 2, 3) ~ 1
+    ),
+    
+    # Income categories
+    income = dplyr::case_when(
+      DMGv34 %in% c(1, 2) ~ 1,
+      DMGv34 %in% c(3, 4) ~ 2,
+      DMGv34 == 5 ~ 3
+    ),
+    
+    # Education categories
+    education2 = dplyr::case_when(
+      education == "> High School" ~ education,
+      education %in% c("High-school graduate", "Not High-school graduate") ~ "Some high school or high school graduate"
+    )
+  )
+
+#Labeling values of variables based on data dictionary
+pretbl1$bmicat <- factor(pretbl1$bmicat,
+                         levels = c(1, 2, 3),
+                         labels = c("1: <25", "2: 25–30", "3: >30"))
+pretbl1$income <- factor(pretbl1$income,
+                         levels = c(1, 2, 3),
+                         labels = c("1: <$40,000", "2: $40,000–$99,999", "3: ≥$100,000"))
+pretbl1$white <- factor(pretbl1$white, levels = c(0, 1), labels = c("Non-white", "White"))
+pretbl1$is_treatment <- factor(pretbl1$is_treatment, levels = c(0, 1), labels = c("Control", "Treatment"))
+pretbl1$ferritin30cat <- factor(pretbl1$ferritin30cat,
+                                levels = c(1, 2),
+                                labels = c("1: <30 microgram/L", "2: ≥30 microgram/L"))
+pretbl1$ferritin15cat <- factor(pretbl1$ferritin15cat,
+                                levels = c(1, 2),
+                                labels = c("1: <15 microgram/L", "2: ≥15 microgram/L"))
+pretbl1$Exercise <- factor(pretbl1$Exercise,
+                           levels = c(1, 2, 3),
+                           labels = c("1: Low", "2: Moderate", "3: High"))
+pretbl1$parity <- factor(pretbl1$parity,
+                         levels = c(0, 1),
+                         labels = c("0: Nulliparous", "1: Parous"))
+pretbl1$take_vitamins[pretbl1$take_vitamins == ""] <- NA
+
+#labeling variables themselves
+var_label(pretbl1$age) <- "Age (years)"
+var_label(pretbl1$bmicat) <- "BMI category"
+var_label(pretbl1$income) <- "Income category"
+var_label(pretbl1$parity) <- "Parity"
+var_label(pretbl1$take_vitamins) <- "Prenatal Vitamin Use"
+var_label(pretbl1$Exercise) <- "Exercise level"
+var_label(pretbl1$is_treatment) <- "Treatment assignment"
+var_label(pretbl1$ferritin30cat) <- "Serum ferritin (<30 µg/L cutoff)"
+var_label(pretbl1$ferritin15cat) <- "Serum ferritin (<15 µg/L cutoff)"
+
+```
 
 ## Results {#sec-results}
 
 Describe your results and include relevant tables, plots, and code/comments used to obtain them. You may refer to the @sec-methods as needed. End with a brief conclusion of your findings related to the question you set out to address. You can include references if you'd like, but this is not required.
 
+```{r}
+#install and load package for creating Table 1
+
+install.packages("gtsummary")
+library(gtsummary)
+install.packages("tableone")
+library(tableone)
+
+#Table 1 (by 30 microgram/L ferritin cutoff)
+pretbl1 %>%
+  select(ferritin30cat, age, bmicat, white, parity, income, education2, take_vitamins, Exercise, is_treatment) %>%
+  tbl_summary(by = ferritin30cat, missing = "no") %>%
+  add_p() %>%
+  bold_labels()
+
+#Table 1 (by 15 microgram/L ferritin cutoff)
+pretbl1 %>%
+  select(ferritin15cat, age, bmicat, white, parity, income, education2, take_vitamins, Exercise, is_treatment) %>%
+  tbl_summary(by = ferritin15cat, missing = "no") %>%
+  add_p() %>%
+  bold_labels()
+```
+
 ## Conclusion
 
 This the conclusion. The @sec-results can be invoked here.
+
+## Bibliography
+CDC. (2024). Data and Statistics | Reproductive Health. Centers for Disease Control and Prevention. Retrieved from https://www.cdc.gov/reproductive-health/data-statistics/index.html 
+
+
+Gernand, A. D., Schulze, K. J., Stewart, C. P., West, K. P., & Christian, P. (2016). Micronutrient deficiencies in pregnancy worldwide: health effects and prevention. Nature Reviews Endocrinology, 12(5), 274–289. https://doi.org/10.1038/nrendo.2016.37
+
+
+Cappellini, M. D., Santini, V., Braxs, C., & Shander, A. (2022). Iron metabolism and iron deficiency anemia in women. Fertility and Sterility, 118(4), 607–614. https://doi.org/10.1016/j.fertnstert.2022.08.014
+
+
+Petraglia, F., & Dolmans, M. M. (2022). Iron deficiency anemia: Impact on women's reproductive health. Fertility and Sterility, 118(4), 605–606. https://doi.org/10.1016/j.fertnstert.2022.08.850 
+
+
+Mumford, S. L., et al. (2021). Markers of vitamin D metabolism and premenstrual symptoms in healthy women with regular cycles. Human Reproduction, 36(7), 1808–1820. https://doi.org/10.1093/humrep/deab089
