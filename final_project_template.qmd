@@ -34,7 +34,7 @@ Miscarriage, defined as the spontaneous loss of a pregnancy before 20 weeks of g
 
 **Covariates** Potential confounders were identified through literature review and include: age, Body Mass Index (BMI), race/ethnicity, parity, household income, educational attainment, use of prenatal vitamins, physical activity, and aspirin treatment assignment. Smoking status was inconsistently measured and is excluded from primary analyses.
 
-**Statistical Analysis** Descriptive statistics summarize the distribution of serum ferritin and covariates. Table 1 presents baseline characteristics stratified by serum ferritin status (\<30 µg/L vs. ≥30 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This approach is widely recommended as an alternative to log-binomial models, which often fail to converge in the presence of complex covariate adjustment or weighting. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency.
+**Statistical Analysis** Descriptive statistics summarize the distribution of serum ferritin and covariates. Table 1 presents baseline characteristics stratified by serum ferritin status (\<30 µg/L vs. ≥30 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This approach is widely recommended as an alternative to log-binomial models, which often fail to converge in the presence of complex covariate adjustment or weighting. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency and stratifying by potential effect modifiers.
 
 ```{r}
 #load packages
@@ -214,7 +214,6 @@ adjmodel <- svyglm(anyloss ~ ferritin30cat + age + bmicat + white + parity +
 
 summary(adjmodel)
 exp(cbind(RR = coef(adjmodel), confint(adjmodel)))
-
 ```
 In total, 184 pregnancy losses occurred among 1,193 women with serum ferritin measured at baseline. Using the 30 μg/L cutoff, 144 cases occurred among women with ferritin ≥30 μg/L and 40 cases among those with ferritin <30 μg/L. In unadjusted analyses, women with ferritin <30 μg/L had a slightly lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.77; 95% CI: 0.56, 1.06). After adjustment for age, BMI, race, parity, income, education, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.82; 95% CI: 0.59, 1.12). Neither estimate reached statistical significance.
 
@@ -267,8 +266,73 @@ adjmodel2 <- svyglm(anyloss ~ ferritin15cat + age + bmicat + white + parity +
 
 summary(adjmodel2)
 exp(cbind(RR = coef(adjmodel2), confint(adjmodel2)))
+
+
+# Adjusted model with interaction between ferritin and parity
+interaction_model <- svyglm(anyloss ~ ferritin30cat * parity + age + bmicat + white + income + education2 + take_vitamins + Exercise + is_treatment,
+                            design = design,
+                            family = quasipoisson(link = "log"))
+summary(interaction_model)
+#significant p-value; potential effect modification by parity
+
+
+#Stratification of primary model by parity
+
+# Split data by parity
+nulliparous_data <- subset_data %>% filter(parity == "0: Nulliparous")
+parous_data <- subset_data %>% filter(parity == "1: Parous")
+
+#Cases in each group
+nulliparous_data %>%
+  group_by(ferritin30cat) %>%
+  summarise(
+    n_anyloss = sum(anyloss == 1, na.rm = TRUE),
+    total = n(),
+    percent = round(100 * n_anyloss / total, 1)
+  )
+
+parous_data %>%
+  group_by(ferritin30cat) %>%
+  summarise(
+    n_anyloss = sum(anyloss == 1, na.rm = TRUE),
+    total = n(),
+    percent = round(100 * n_anyloss / total, 1)
+  )
+
+# Create survey designs for each stratum
+design_nulliparous <- svydesign(ids = ~1, weights = ~ipw, data = nulliparous_data)
+design_parous <- svydesign(ids = ~1, weights = ~ipw, data = parous_data)
+
+# Unadjusted models
+unadj_nulliparous <- svyglm(anyloss ~ ferritin30cat,
+                             design = design_nulliparous,
+                             family = quasipoisson(link = "log"))
+
+unadj_parous <- svyglm(anyloss ~ ferritin30cat,
+                        design = design_parous,
+                        family = quasipoisson(link = "log"))
+
+# Summaries and exponentiated coefficients
+exp(cbind(RR = coef(unadj_nulliparous), confint(unadj_nulliparous)))
+exp(cbind(RR = coef(unadj_parous), confint(unadj_parous)))
+
+# Adjusted models
+adj_nulliparous <- svyglm(anyloss ~ ferritin30cat + age + bmicat + white +
+                             income + education2 + take_vitamins + Exercise + is_treatment,
+                           design = design_nulliparous,
+                           family = quasipoisson(link = "log"))
+
+adj_parous <- svyglm(anyloss ~ ferritin30cat + age + bmicat + white +
+                        income + education2 + take_vitamins + Exercise + is_treatment,
+                      design = design_parous,
+                      family = quasipoisson(link = "log"))
+
+# Summaries and exponentiated coefficients
+exp(cbind(RR = coef(adj_nulliparous), confint(adj_nulliparous)))
+exp(cbind(RR = coef(adj_parous), confint(adj_parous)))
 ```
 In a sensitivity analysis using a 15 μg/L cutoff for serum ferritin, 12 pregnancy losses occurred among women with ferritin <15 μg/L compared to 172 losses among those with ferritin ≥15 μg/L. The unadjusted risk ratio for pregnancy loss in the <15 μg/L group was 0.80 (95% CI: 0.47, 1.38). After adjustment for covariates, the association remained similar (adjusted RR = 0.86; 95% CI: 0.50, 1.48). These findings were consistent with the primary analysis and did not indicate a statistically significant association between low ferritin and pregnancy loss.
+Stratified analyses by parity using the 30 μg/L cutoff revealed differing patterns. Among nulliparous women, pregnancy loss occurred in 22 women with ferritin <30 μg/L and 61 women with ferritin ≥30 μg/L. The adjusted hazard ratio was 1.12 (95% CI: 0.71, 1.75), indicating no significant association. In contrast, among parous women, pregnancy loss occurred in 18 women with ferritin <30 μg/L and 83 women with ferritin ≥30 μg/L. Here, lower ferritin was associated with a significantly reduced risk of pregnancy loss (adjusted HR = 0.58; 95% CI: 0.37, 0.92).
 
 ## Conclusion
 
