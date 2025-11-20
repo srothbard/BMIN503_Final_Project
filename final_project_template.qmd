@@ -22,30 +22,22 @@ Sunni Mumford has worked with EAGeR data before and informed me about the EAGeR 
 
 ## Introduction {#sec-introduction}
 
-  Miscarriage, defined as the spontaneous loss of a pregnancy before 20 weeks of gestation, is a common and emotionally devastating outcome, affecting approximately 10–20% of recognized pregnancies. Despite its prevalence, the underlying causes of miscarriage are not fully understood, particularly among women with a history of pregnancy loss. Iron, an essential micronutrient involved in oxygen transport, hormone synthesis, and cellular function, plays a critical role in reproductive health. Iron deficiency—even in the absence of anemia—has been associated with impaired implantation, placental development, and increased miscarriage risk. Serum ferritin, a biomarker of iron stores, is particularly relevant in assessing iron status in women of reproductive age. This final project aims to investigate whether preconception serum ferritin levels are associated with miscarriage risk among women with prior pregnancy loss, using data from the EAGeR (Effects of Aspirin in Gestation and Reproduction) trial.
-  This research is inherently interdisciplinary, integrating perspectives from epidemiology, reproductive biology, nutrition science, and biostatistics. Epidemiological methods are essential for analyzing longitudinal data and identifying confounding factors, while reproductive biology provides insight into how iron status may influence implantation and early gestational development. Nutrition science contributes to understanding iron metabolism and its biomarkers, and biostatistics enables rigorous modeling of time-to-event outcomes. The EAGeR trial provides a unique opportunity to explore the relationship between serum ferritin and miscarriage, as it includes detailed data on preconception serum ferritin levels and prospective tracking of pregnancy outcomes by gestational week. Identifying relevant confounders such as age, BMI, and parity is essential for isolating the true effect of iron status, and integrating insights from epidemiology, nutrition science, and reproductive biology is critical to fully understanding this complex relationship.
+Miscarriage, defined as the spontaneous loss of a pregnancy before 20 weeks of gestation, is a common and emotionally devastating outcome, affecting approximately 10–20% of recognized pregnancies. Despite its prevalence, the underlying causes of miscarriage are not fully understood, particularly among women with a history of pregnancy loss. Iron, an essential micronutrient involved in oxygen transport, hormone synthesis, and cellular function, plays a critical role in reproductive health. Iron deficiency—even in the absence of anemia—has been associated with impaired implantation, placental development, and increased miscarriage risk. Serum ferritin, a biomarker of iron stores, is particularly relevant in assessing iron status in women of reproductive age. This final project aims to investigate whether preconception serum ferritin levels are associated with miscarriage risk among women with prior pregnancy loss, using data from the EAGeR (Effects of Aspirin in Gestation and Reproduction) trial. This research is inherently interdisciplinary, integrating perspectives from epidemiology, reproductive biology, nutrition science, and biostatistics. Epidemiological methods are essential for analyzing longitudinal data and identifying confounding factors, while reproductive biology provides insight into how iron status may influence implantation and early gestational development. Nutrition science contributes to understanding iron metabolism and its biomarkers, and biostatistics enables rigorous modeling of time-to-event outcomes. The EAGeR trial provides a unique opportunity to explore the relationship between serum ferritin and miscarriage, as it includes detailed data on preconception serum ferritin levels and prospective tracking of pregnancy outcomes by gestational week. Identifying relevant confounders such as age, BMI, and parity is essential for isolating the true effect of iron status, and integrating insights from epidemiology, nutrition science, and reproductive biology is critical to fully understanding this complex relationship.
 
 ## Methods {#sec-methods}
 
-**Study Population**
-This study utilizes data from the Effects of Aspirin in Gestation and Reproduction (EAGeR) trial, a multi-site randomized controlled trial designed to evaluate the impact of low-dose aspirin on reproductive outcomes. The analytic sample includes 1,228 women aged 18–40 years who had experienced one or two prior pregnancy losses and were actively attempting to conceive. Participants were followed until miscarriage or birth occurred, with pregnancy outcomes tracked in gestational weeks.
+**Study Population** This study utilizes data from the Effects of Aspirin in Gestation and Reproduction (EAGeR) trial, a multi-site randomized controlled trial designed to evaluate the impact of low-dose aspirin on reproductive outcomes. The analytic sample includes 1,228 women aged 18–40 years who had experienced one or two prior pregnancy losses and were actively attempting to conceive. Participants were followed until miscarriage or birth occurred, with pregnancy outcomes tracked in gestational weeks.
 
-**Exposure Assessment**
-The primary exposure of interest is iron status, measured via serum ferritin concentrations at baseline (preconception). Serum ferritin was assessed using standardized immunoassays, with quality control procedures including re-testing of samples to ensure reliability. Serum ferritin is selected as the primary biomarker due to its clinical relevance and widespread use in assessing iron stores. Iron deficiency is commonly defined as serum ferritin <15 µg/L by the World Health Organization (WHO), but recent literature suggests a cutoff of <30 µg/L may improve sensitivity and specificity in both healthy and clinical populations. Ferritin levels are dichotomized at the <30 µg/L threshold for analysis.
+**Exposure Assessment** The primary exposure of interest is iron status, measured via serum ferritin concentrations at baseline (preconception). Serum ferritin was assessed using standardized immunoassays, with quality control procedures including re-testing of samples to ensure reliability. Serum ferritin is selected as the primary biomarker due to its clinical relevance and widespread use in assessing iron stores. Iron deficiency is commonly defined as serum ferritin \<15 µg/L by the World Health Organization (WHO), but recent literature suggests a cutoff of \<30 µg/L may improve sensitivity and specificity in both healthy and clinical populations. Ferritin levels are dichotomized at the \<30 µg/L threshold for analysis.
 
-**Outcome Measurement**
-The primary outcome is miscarriage, defined as a chemical or clinical loss of pregnancy. This time-to-event metric aligns with the structure of the EAGeR trial, which tracked pregnancy outcomes in gestational weeks following conception.
+**Outcome Measurement** The primary outcome is miscarriage, defined as a chemical or clinical loss of pregnancy. 
 
-**Covariates**
-Potential confounders were identified through literature review and include:
-age, Body Mass Index (BMI), race/ethnicity, parity, household income, educational attainment, use of prenatal vitamins, and physical activity. Smoking status was inconsistently measured and is excluded from primary analyses.
+**Covariates** Potential confounders were identified through literature review and include: age, Body Mass Index (BMI), race/ethnicity, parity, household income, educational attainment, use of prenatal vitamins, physical activity, and aspirin treatment assignment. Smoking status was inconsistently measured and is excluded from primary analyses.
 
-**Statistical Analysis**
-Descriptive statistics will summarize the distribution of serum ferritin and covariates. Table 1 will present baseline characteristics stratified by serum ferritin status (<30 µg/L vs. ≥30 µg/L). Missing data will be addressed using multiple imputation. Discrete-time Cox proportional hazards models will be used to estimate the association between serum ferritin levels and miscarriage. Initial models will be unadjusted, followed by adjusted models incorporating identified covariates. Sensitivity analyses will explore stratification by potential effect modifiers and using alternative ferritin cutoffs.
+**Statistical Analysis** Descriptive statistics summarize the distribution of serum ferritin and covariates. Table 1 presents baseline characteristics stratified by serum ferritin status (\<30 µg/L vs. ≥30 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This approach is widely recommended as an alternative to log-binomial models, which often fail to converge in the presence of complex covariate adjustment or weighting. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency.
 
 ```{r}
-#install and load packages
-install.packages("labelled")
+#load packages
 library(labelled)
 library(haven)
 library(dplyr)
@@ -65,9 +57,6 @@ pretbl1 <- merged_all %>%
       !is.na(ferritin) & ferritin < 15 ~ 1,
       ferritin >= 15 ~ 2
     ),
-    
-    # Rescaled continuous ferritin
-    ferritin5 = ferritin / 5,
     
     # Age categories
     agecat = dplyr::case_when(
@@ -147,43 +136,152 @@ var_label(pretbl1$ferritin15cat) <- "Serum ferritin (<15 µg/L cutoff)"
 Describe your results and include relevant tables, plots, and code/comments used to obtain them. You may refer to the @sec-methods as needed. End with a brief conclusion of your findings related to the question you set out to address. You can include references if you'd like, but this is not required.
 
 ```{r}
-#install and load package for creating Table 1
+#load packages for creating Table 1
 
-install.packages("gtsummary")
 library(gtsummary)
-install.packages("tableone")
 library(tableone)
 
 #Table 1 (by 30 microgram/L ferritin cutoff)
-pretbl1 %>%
+tbl1_30 <- pretbl1 %>%
   select(ferritin30cat, age, bmicat, white, parity, income, education2, take_vitamins, Exercise, is_treatment) %>%
   tbl_summary(by = ferritin30cat, missing = "no") %>%
   add_p() %>%
   bold_labels()
 
 #Table 1 (by 15 microgram/L ferritin cutoff)
-pretbl1 %>%
+tbl1_15 <- pretbl1 %>%
   select(ferritin15cat, age, bmicat, white, parity, income, education2, take_vitamins, Exercise, is_treatment) %>%
   tbl_summary(by = ferritin15cat, missing = "no") %>%
   add_p() %>%
   bold_labels()
+
+as_gt(tbl1_30) %>%
+  gt::gtsave("Table1_30ferr.docx")
+
+as_gt(tbl1_15) %>%
+  gt::gtsave("Table1_15ferr.docx")
 ```
+Among 1,228 participants, serum ferritin levels varied across categories. Using the 30 µg/L cutoff, 342 women (27.8%) had ferritin <30 µg/L and 851 (72.2%) had ferritin ≥30 µg/L. Women with ferritin <30 µg/L were slightly younger (median age 27.8 vs. 28.4 years, p=0.037) and more likely to be parous (63% vs. 55%, p=0.012). Income also differed significantly (p=0.020), with a higher proportion of women in the <30 µg/L group reporting income <$40,000 (38% vs. 31%). Other characteristics, including BMI, race, education, prenatal vitamin use, exercise level, and treatment assignment, were similar across ferritin categories.
+Using the 15 µg/L cutoff, 110 women (9.0%) had ferritin <15 µg/L and 1,083 (91.0%) had ferritin ≥15 µg/L. Women with ferritin <15 µg/L were more likely to have higher BMI (p=0.009), be parous (68% vs. 56%, p=0.014), and report lower income (p=0.012). Race also differed significantly (p=0.007), with non-White participants more common in the <15 µg/L group (11% vs. 4.8%). Exercise level varied by ferritin status (p=0.044), with low activity more frequent among women with ferritin <15 µg/L (35% vs. 25%). Age, education, prenatal vitamin use, and treatment assignment did not differ significantly between groups.
+
+```{r}
+# Fit logistic model for pregnancy
+selection_model <- glm(pptnew ~ ferritin30cat + age + bmicat + white + parity + income + education2 + take_vitamins + Exercise + is_treatment,
+                       data = pretbl1,
+                       family = binomial)
+
+# Compute predicted probabilities and IP weights
+pretbl1 <- pretbl1 %>%
+  mutate(pred_preg = predict(selection_model, newdata = pretbl1, type = "response"),
+         ipw = ifelse(pptnew == 1, 1 / pred_preg, 1 / (1 - pred_preg)))
+
+# Filter dataset for those who got pregnant
+# and set level 2 as reference for ferritin30cat
+subset_data <- pretbl1 %>%
+  filter(pptnew == 1) %>%
+  mutate(ferritin30cat = relevel(ferritin30cat, ref = "2: ≥30 microgram/L"))
+
+subset_data <- subset_data %>% filter(!is.na(ipw))
+
+#Cases in each group
+subset_data %>%
+  group_by(ferritin30cat) %>%
+  summarise(
+    n_anyloss = sum(anyloss == 1, na.rm = TRUE),
+    total = n(),
+    percent = round(100 * n_anyloss / total, 1)
+  )
+
+# Unadjusted model using survey design
+library(survey)
+library(broom) 
+
+design <- svydesign(ids = ~1, weights = ~ipw, data = subset_data)
+
+unadj_model <- svyglm(anyloss ~ ferritin30cat,
+                      design = design,  # same design object with weights
+                      family = quasipoisson(link = "log"))
+
+summary(unadj_model)
+exp(cbind(RR = coef(unadj_model), confint(unadj_model)))
+
+#adjusted model
+
+adjmodel <- svyglm(anyloss ~ ferritin30cat + age + bmicat + white + parity +
+                     income + education2 + take_vitamins + Exercise + is_treatment,
+                   design = design,
+                   family = quasipoisson(link = "log"))
+
+summary(adjmodel)
+exp(cbind(RR = coef(adjmodel), confint(adjmodel)))
+
+```
+In total, 184 pregnancy losses occurred among 1,193 women with serum ferritin measured at baseline. Using the 30 μg/L cutoff, 144 cases occurred among women with ferritin ≥30 μg/L and 40 cases among those with ferritin <30 μg/L. In unadjusted analyses, women with ferritin <30 μg/L had a slightly lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.77; 95% CI: 0.56, 1.06). After adjustment for age, BMI, race, parity, income, education, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.82; 95% CI: 0.59, 1.12). Neither estimate reached statistical significance.
+
+```{r}
+#Sensitivity analyses
+
+# Fit logistic model for pregnancy (different ferritin cutoff)
+selection_model2 <- glm(pptnew ~ ferritin15cat + age + bmicat + white + parity + income + education2 + take_vitamins + Exercise + is_treatment,
+                       data = pretbl1,
+                       family = binomial)
+
+# Compute predicted probabilities and IP weights
+senset <- pretbl1 %>%
+  mutate(pred_preg = predict(selection_model2, newdata = pretbl1, type = "response"),
+         ipw = ifelse(pptnew == 1, 1 / pred_preg, 1 / (1 - pred_preg)))
+
+# Filter dataset for those who got pregnant
+# and set level 2 as reference for ferritin15cat
+subset_data2 <- senset %>%
+  filter(pptnew == 1) %>%
+  mutate(ferritin15cat = relevel(ferritin15cat, ref = "2: ≥15 microgram/L"))
+
+subset_data2 <- subset_data2 %>% filter(!is.na(ipw))
+
+#Cases in each group
+subset_data2 %>%
+  group_by(ferritin15cat) %>%
+  summarise(
+    n_anyloss = sum(anyloss == 1, na.rm = TRUE),
+    total = n(),
+    percent = round(100 * n_anyloss / total, 1)
+  )
+
+# Unadjusted model using survey design
+design2 <- svydesign(ids = ~1, weights = ~ipw, data = subset_data2)
+
+unadj_model2 <- svyglm(anyloss ~ ferritin15cat,
+                      design = design2,  # same design object with weights
+                      family = quasipoisson(link = "log"))
+
+summary(unadj_model2)
+exp(cbind(RR = coef(unadj_model2), confint(unadj_model2)))
+
+#adjusted model
+
+adjmodel2 <- svyglm(anyloss ~ ferritin15cat + age + bmicat + white + parity +
+                     income + education2 + take_vitamins + Exercise + is_treatment,
+                   design = design2,
+                   family = quasipoisson(link = "log"))
+
+summary(adjmodel2)
+exp(cbind(RR = coef(adjmodel2), confint(adjmodel2)))
+```
+In a sensitivity analysis using a 15 μg/L cutoff for serum ferritin, 12 pregnancy losses occurred among women with ferritin <15 μg/L compared to 172 losses among those with ferritin ≥15 μg/L. The unadjusted risk ratio for pregnancy loss in the <15 μg/L group was 0.80 (95% CI: 0.47, 1.38). After adjustment for covariates, the association remained similar (adjusted RR = 0.86; 95% CI: 0.50, 1.48). These findings were consistent with the primary analysis and did not indicate a statistically significant association between low ferritin and pregnancy loss.
 
 ## Conclusion
 
 This the conclusion. The @sec-results can be invoked here.
 
 ## Bibliography
-CDC. (2024). Data and Statistics | Reproductive Health. Centers for Disease Control and Prevention. Retrieved from https://www.cdc.gov/reproductive-health/data-statistics/index.html 
 
+CDC. (2024). Data and Statistics \| Reproductive Health. Centers for Disease Control and Prevention. Retrieved from https://www.cdc.gov/reproductive-health/data-statistics/index.html
 
 Gernand, A. D., Schulze, K. J., Stewart, C. P., West, K. P., & Christian, P. (2016). Micronutrient deficiencies in pregnancy worldwide: health effects and prevention. Nature Reviews Endocrinology, 12(5), 274–289. https://doi.org/10.1038/nrendo.2016.37
 
-
 Cappellini, M. D., Santini, V., Braxs, C., & Shander, A. (2022). Iron metabolism and iron deficiency anemia in women. Fertility and Sterility, 118(4), 607–614. https://doi.org/10.1016/j.fertnstert.2022.08.014
 
-
-Petraglia, F., & Dolmans, M. M. (2022). Iron deficiency anemia: Impact on women's reproductive health. Fertility and Sterility, 118(4), 605–606. https://doi.org/10.1016/j.fertnstert.2022.08.850 
-
+Petraglia, F., & Dolmans, M. M. (2022). Iron deficiency anemia: Impact on women's reproductive health. Fertility and Sterility, 118(4), 605–606. https://doi.org/10.1016/j.fertnstert.2022.08.850
 
 Mumford, S. L., et al. (2021). Markers of vitamin D metabolism and premenstrual symptoms in healthy women with regular cycles. Human Reproduction, 36(7), 1808–1820. https://doi.org/10.1093/humrep/deab089
