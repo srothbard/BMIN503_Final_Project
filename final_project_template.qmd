@@ -155,6 +155,10 @@ tbl1_15 <- pretbl1 %>%
   add_p() %>%
   bold_labels()
 
+tbl1_30
+tbl1_15
+
+#Saving table 1 versions as documents
 as_gt(tbl1_30) %>%
   gt::gtsave("Table1_30ferr.docx")
 
@@ -394,6 +398,7 @@ adj_bmicat1; adj_bmicat2; adj_bmicat3
 In a sensitivity analysis using a 15 μg/L cutoff for serum ferritin, 12 pregnancy losses occurred among women with ferritin <15 μg/L compared to 172 losses among those with ferritin ≥15 μg/L. The unadjusted risk ratio for pregnancy loss in the <15 μg/L group was 0.80 (95% CI: 0.47, 1.38). After adjustment for covariates, the association remained similar (adjusted RR = 0.86; 95% CI: 0.50, 1.48). These findings were consistent with the primary analysis and did not indicate a statistically significant association between low ferritin and pregnancy loss.
 Stratified analyses by parity using the 30 μg/L cutoff revealed differing patterns. Among nulliparous women, pregnancy loss occurred in 22 women with ferritin <30 μg/L and 61 women with ferritin ≥30 μg/L. The adjusted hazard ratio was 1.12 (95% CI: 0.71, 1.75), indicating no significant association. In contrast, among parous women, pregnancy loss occurred in 18 women with ferritin <30 μg/L and 83 women with ferritin ≥30 μg/L. Here, lower ferritin was associated with a significantly reduced risk of pregnancy loss (adjusted HR = 0.58; 95% CI: 0.37, 0.92).
 Stratified analyses by BMI using the 30 μg/L cutoff showed no significant associations between ferritin <30 μg/L and pregnancy loss. Among women with BMI <25 kg/m², the adjusted hazard ratio was 0.66 (95% CI: 0.42, 1.05). For BMI 25–30 kg/m², the adjusted hazard ratio was 0.90 (95% CI: 0.49, 1.64), and for BMI >30 kg/m², it was 0.87 (95% CI: 0.44, 1.73). Confidence intervals included 1 across all strata, indicating no significant effect.
+
 ## Conclusion
 
 This the conclusion. The @sec-results can be invoked here.
