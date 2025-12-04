@@ -1,5 +1,5 @@
 ---
-title: "Relationship Between Upper Respiratory Tract Infection in Pregnancy and Adverse Birth Outcomes"
+title: "Relationship Between Preconception Iron Biomarkers and Pregnancy Loss"
 subtitle: "BMIN503/EPID600 Final Project"
 author: "Sarah Rothbard"
 format: html
@@ -32,9 +32,9 @@ Miscarriage, defined as the spontaneous loss of a pregnancy before 20 weeks of g
 
 **Outcome Measurement** The primary outcome is miscarriage, defined as a chemical or clinical loss of pregnancy. 
 
-**Covariates** Potential confounders were identified through literature review and include: age, Body Mass Index (BMI), race/ethnicity, parity, household income, educational attainment, use of prenatal vitamins, physical activity, and aspirin treatment assignment. Smoking status was inconsistently measured and is excluded from primary analyses.
+**Covariates** Potential confounders were identified through literature review and include: age, Body Mass Index (BMI), race/ethnicity, parity, household income, use of prenatal vitamins, physical activity, smoking status, and aspirin treatment assignment. These covariates are of interest because they may influence both iron status and miscarriage risk. Age is a well-established risk factor for miscarriage and may also affect iron stores. BMI can alter ferritin levels through inflammation and is linked to adverse reproductive outcomes. Race/ethnicity captures biological and social differences that influence diet, iron metabolism, and pregnancy outcomes. Parity reflects prior reproductive history, which can deplete iron stores and affect miscarriage risk. Household income serves as a proxy for socioeconomic status, influencing diet quality and access to care. Prenatal vitamin use is relevant because supplements often contain iron, potentially modifying ferritin levels. Physical activity may impact inflammation and iron metabolism, while extreme activity has been associated with miscarriage. Smoking is included due to its known association with adverse pregnancy outcomes and potential effects on nutrient absorption. Finally, aspirin treatment assignment is controlled for as part of the EAGeR trial design, given its possible influence on implantation and miscarriage risk.
 
-**Statistical Analysis** Descriptive statistics summarize the distribution of serum ferritin and covariates. Table 1 presents baseline characteristics stratified by serum ferritin status (\<30 µg/L vs. ≥30 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This approach is widely recommended as an alternative to log-binomial models, which often fail to converge in the presence of complex covariate adjustment or weighting. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency and stratifying by potential effect modifiers.
+**Statistical Analysis** Descriptive statistics summarize the distribution of serum ferritin and covariates. Two versions of Table 1 present baseline characteristics stratified by serum ferritin status (\<30 µg/L vs. ≥30 µg/L; \<15 µg/L vs. ≥15 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This model is chosen because it provides a reliable way to estimate risk ratios directly for binary outcomes, avoiding convergence issues common in log-binomial models. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency and stratifying by potential effect modifiers.
 
 ```{r}
 #load packages
@@ -87,13 +87,15 @@ pretbl1 <- merged_all %>%
       DMGv34 %in% c(3, 4) ~ 2,
       DMGv34 == 5 ~ 3
     ),
-    
-    # Education categories
-    education2 = dplyr::case_when(
-      education == "> High School" ~ education,
-      education %in% c("High-school graduate", "Not High-school graduate") ~ "Some high school or high school graduate"
+
+# Smoking categories
+smoking = dplyr::case_when(
+  smoke %in% c("Dialy", "Fewer") ~ 1,
+  smoke == "Never" ~ 0,
+  TRUE ~ NA_real_
     )
   )
+
 
 #Labeling values of variables based on data dictionary
 pretbl1$bmicat <- factor(pretbl1$bmicat,
@@ -118,22 +120,26 @@ pretbl1$parity <- factor(pretbl1$parity,
                          labels = c("0: Nulliparous", "1: Parous"))
 pretbl1$take_vitamins[pretbl1$take_vitamins == ""] <- NA
 
+pretbl1$smoking <- factor(pretbl1$smoking,
+                          levels = c(0, 1),
+                          labels = c("Never", "Ever"))
+
 #labeling variables themselves
 var_label(pretbl1$age) <- "Age (years)"
 var_label(pretbl1$bmicat) <- "BMI category"
 var_label(pretbl1$income) <- "Income category"
 var_label(pretbl1$parity) <- "Parity"
+var_label(pretbl1$white) <- "Race"
 var_label(pretbl1$take_vitamins) <- "Prenatal Vitamin Use"
 var_label(pretbl1$Exercise) <- "Exercise level"
 var_label(pretbl1$is_treatment) <- "Treatment assignment"
 var_label(pretbl1$ferritin30cat) <- "Serum ferritin (<30 µg/L cutoff)"
 var_label(pretbl1$ferritin15cat) <- "Serum ferritin (<15 µg/L cutoff)"
+var_label(pretbl1$smoking) <- "Smoking status"
 
 ```
 
 ## Results {#sec-results}
-
-Describe your results and include relevant tables, plots, and code/comments used to obtain them. You may refer to the @sec-methods as needed. End with a brief conclusion of your findings related to the question you set out to address. You can include references if you'd like, but this is not required.
 
 ```{r}
 #load packages for creating Table 1
@@ -143,14 +149,14 @@ library(tableone)
 
 #Table 1 (by 30 microgram/L ferritin cutoff)
 tbl1_30 <- pretbl1 %>%
-  select(ferritin30cat, age, bmicat, white, parity, income, education2, take_vitamins, Exercise, is_treatment) %>%
+  select(ferritin30cat, age, bmicat, white, parity, income, take_vitamins, Exercise, is_treatment, smoking) %>%
   tbl_summary(by = ferritin30cat, missing = "no") %>%
   add_p() %>%
   bold_labels()
 
 #Table 1 (by 15 microgram/L ferritin cutoff)
 tbl1_15 <- pretbl1 %>%
-  select(ferritin15cat, age, bmicat, white, parity, income, education2, take_vitamins, Exercise, is_treatment) %>%
+  select(ferritin15cat, age, bmicat, white, parity, income, take_vitamins, Exercise, is_treatment, smoking) %>%
   tbl_summary(by = ferritin15cat, missing = "no") %>%
   add_p() %>%
   bold_labels()
@@ -165,12 +171,13 @@ as_gt(tbl1_30) %>%
 as_gt(tbl1_15) %>%
   gt::gtsave("Table1_15ferr.docx")
 ```
-Among 1,228 participants, serum ferritin levels varied across categories. Using the 30 µg/L cutoff, 342 women (27.8%) had ferritin <30 µg/L and 851 (72.2%) had ferritin ≥30 µg/L. Women with ferritin <30 µg/L were slightly younger (median age 27.8 vs. 28.4 years, p=0.037) and more likely to be parous (63% vs. 55%, p=0.012). Income also differed significantly (p=0.020), with a higher proportion of women in the <30 µg/L group reporting income <$40,000 (38% vs. 31%). Other characteristics, including BMI, race, education, prenatal vitamin use, exercise level, and treatment assignment, were similar across ferritin categories.
-Using the 15 µg/L cutoff, 110 women (9.0%) had ferritin <15 µg/L and 1,083 (91.0%) had ferritin ≥15 µg/L. Women with ferritin <15 µg/L were more likely to have higher BMI (p=0.009), be parous (68% vs. 56%, p=0.014), and report lower income (p=0.012). Race also differed significantly (p=0.007), with non-White participants more common in the <15 µg/L group (11% vs. 4.8%). Exercise level varied by ferritin status (p=0.044), with low activity more frequent among women with ferritin <15 µg/L (35% vs. 25%). Age, education, prenatal vitamin use, and treatment assignment did not differ significantly between groups.
+Among 1,228 participants, 982 had valid serum ferritin levels measured; serum ferritin levels varied across categories. Using the 30 µg/L cutoff, 294 women (29.9%) had ferritin <30 µg/L and 688 (70.1%) had ferritin ≥30 µg/L. Women with ferritin <30 µg/L were more likely to be parous (65% vs. 56%, p=0.013). Income also differed significantly (p=0.011), with a higher proportion of women in the <30 µg/L group reporting income <$40,000 (38% vs. 29%). Other characteristics, including age, BMI, race, prenatal vitamin use, exercise level, aspirin treatment assignment, and smoking status were similar across ferritin categories.
+
+Using the 15 µg/L cutoff, 91 women (9.3%) had ferritin <15 µg/L and 891 (90.7%) had ferritin ≥15 µg/L. Women with ferritin <15 µg/L were more likely to have higher BMI (p=0.008), be parous (71% vs. 57%, p=0.009), and report lower income (p=0.023). Race also differed significantly (p=0.005), with non-White participants more common in the <15 µg/L group (12% vs. 4.9%). Exercise level varied by ferritin status (p=0.039), with low activity more frequent among women with ferritin <15 µg/L (40% vs. 27%). Age, prenatal vitamin use, treatment assignment, and smoking status did not differ significantly between groups.
 
 ```{r}
 # Fit logistic model for pregnancy
-selection_model <- glm(pptnew ~ ferritin30cat + age + bmicat + white + parity + income + education2 + take_vitamins + Exercise + is_treatment,
+selection_model <- glm(pptnew ~ ferritin30cat + age + bmicat + white + parity + income + smoking + take_vitamins + Exercise + is_treatment,
                        data = pretbl1,
                        family = binomial)
 
@@ -212,7 +219,7 @@ exp(cbind(RR = coef(unadj_model), confint(unadj_model)))
 #adjusted model
 
 adjmodel <- svyglm(anyloss ~ ferritin30cat + age + bmicat + white + parity +
-                     income + education2 + take_vitamins + Exercise + is_treatment,
+                     income + smoking + take_vitamins + Exercise + is_treatment,
                    design = design,
                    family = quasipoisson(link = "log"))
 
@@ -221,13 +228,13 @@ exp(cbind(RR = coef(adjmodel), confint(adjmodel)))
 ```
 
 
-In total, 184 pregnancy losses occurred among 1,193 women with serum ferritin measured at baseline. Using the 30 μg/L cutoff, 144 cases occurred among women with ferritin ≥30 μg/L and 40 cases among those with ferritin <30 μg/L. In unadjusted analyses, women with ferritin <30 μg/L had a slightly lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.77; 95% CI: 0.56, 1.06). After adjustment for age, BMI, race, parity, income, education, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.82; 95% CI: 0.59, 1.12). Neither estimate reached statistical significance.
+In total, 157 pregnancy losses occurred among 637 women who had serum ferritin measured at baseline, conceived, and have non-missing covariate data. Using the 30 μg/L cutoff, 125 cases occurred among women with ferritin ≥30 μg/L and 32 cases among those with ferritin <30 μg/L. In unadjusted analyses, women with ferritin <30 μg/L had a lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.76; 95% CI: 0.46, 0.94). After adjustment for age, BMI, race, parity, income, smoking status, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.70; 95% CI: 0.49, 1.00).
 
 ```{r}
 #Sensitivity analyses
 
 # Fit logistic model for pregnancy (different ferritin cutoff)
-selection_model2 <- glm(pptnew ~ ferritin15cat + age + bmicat + white + parity + income + education2 + take_vitamins + Exercise + is_treatment,
+selection_model2 <- glm(pptnew ~ ferritin15cat + age + bmicat + white + parity + income + smoking + take_vitamins + Exercise + is_treatment,
                        data = pretbl1,
                        family = binomial)
 
@@ -266,7 +273,7 @@ exp(cbind(RR = coef(unadj_model2), confint(unadj_model2)))
 #adjusted model
 
 adjmodel2 <- svyglm(anyloss ~ ferritin15cat + age + bmicat + white + parity +
-                     income + education2 + take_vitamins + Exercise + is_treatment,
+                     income + smoking + take_vitamins + Exercise + is_treatment,
                    design = design2,
                    family = quasipoisson(link = "log"))
 
@@ -275,12 +282,11 @@ exp(cbind(RR = coef(adjmodel2), confint(adjmodel2)))
 
 
 # Adjusted model with interaction between ferritin and parity
-interaction_model <- svyglm(anyloss ~ ferritin30cat * parity + age + bmicat + white + income + education2 + take_vitamins + Exercise + is_treatment,
+interaction_model <- svyglm(anyloss ~ ferritin30cat * parity + age + bmicat + white + income + smoking + take_vitamins + Exercise + is_treatment,
                             design = design,
                             family = quasipoisson(link = "log"))
 summary(interaction_model)
 #significant p-value; potential effect modification by parity
-
 
 #Stratification of primary model by parity
 
@@ -324,12 +330,12 @@ exp(cbind(RR = coef(unadj_parous), confint(unadj_parous)))
 
 # Adjusted models
 adj_nulliparous <- svyglm(anyloss ~ ferritin30cat + age + bmicat + white +
-                             income + education2 + take_vitamins + Exercise + is_treatment,
+                             income + smoking + take_vitamins + Exercise + is_treatment,
                            design = design_nulliparous,
                            family = quasipoisson(link = "log"))
 
 adj_parous <- svyglm(anyloss ~ ferritin30cat + age + bmicat + white +
-                        income + education2 + take_vitamins + Exercise + is_treatment,
+                        income + smoking + take_vitamins + Exercise + is_treatment,
                       design = design_parous,
                       family = quasipoisson(link = "log"))
 
@@ -380,13 +386,13 @@ unadj_bmicat3 <- fit_model(anyloss ~ ferritin30cat, design_bmicat3, bmicat3_data
 
 # Adjusted models
 adj_bmicat1 <- fit_model(anyloss ~ ferritin30cat + age + parity + white +
-                           income + education2 + take_vitamins + Exercise + is_treatment,
+                           income + smoking + take_vitamins + Exercise + is_treatment,
                          design_bmicat1, bmicat1_data)
 adj_bmicat2 <- fit_model(anyloss ~ ferritin30cat + age + parity + white +
-                           income + education2 + take_vitamins + Exercise + is_treatment,
+                           income + smoking + take_vitamins + Exercise + is_treatment,
                          design_bmicat2, bmicat2_data)
 adj_bmicat3 <- fit_model(anyloss ~ ferritin30cat + age + parity + white +
-                           income + education2 + take_vitamins + Exercise + is_treatment,
+                           income + smoking + take_vitamins + Exercise + is_treatment,
                          design_bmicat3, bmicat3_data)
 
 # View results
@@ -395,13 +401,13 @@ adj_bmicat1; adj_bmicat2; adj_bmicat3
 
 
 ```
-In a sensitivity analysis using a 15 μg/L cutoff for serum ferritin, 12 pregnancy losses occurred among women with ferritin <15 μg/L compared to 172 losses among those with ferritin ≥15 μg/L. The unadjusted risk ratio for pregnancy loss in the <15 μg/L group was 0.80 (95% CI: 0.47, 1.38). After adjustment for covariates, the association remained similar (adjusted RR = 0.86; 95% CI: 0.50, 1.48). These findings were consistent with the primary analysis and did not indicate a statistically significant association between low ferritin and pregnancy loss.
-Stratified analyses by parity using the 30 μg/L cutoff revealed differing patterns. Among nulliparous women, pregnancy loss occurred in 22 women with ferritin <30 μg/L and 61 women with ferritin ≥30 μg/L. The adjusted hazard ratio was 1.12 (95% CI: 0.71, 1.75), indicating no significant association. In contrast, among parous women, pregnancy loss occurred in 18 women with ferritin <30 μg/L and 83 women with ferritin ≥30 μg/L. Here, lower ferritin was associated with a significantly reduced risk of pregnancy loss (adjusted HR = 0.58; 95% CI: 0.37, 0.92).
-Stratified analyses by BMI using the 30 μg/L cutoff showed no significant associations between ferritin <30 μg/L and pregnancy loss. Among women with BMI <25 kg/m², the adjusted hazard ratio was 0.66 (95% CI: 0.42, 1.05). For BMI 25–30 kg/m², the adjusted hazard ratio was 0.90 (95% CI: 0.49, 1.64), and for BMI >30 kg/m², it was 0.87 (95% CI: 0.44, 1.73). Confidence intervals included 1 across all strata, indicating no significant effect.
+In a sensitivity analysis using a 15 μg/L cutoff for serum ferritin, 9 pregnancy losses occurred among women with ferritin <15 μg/L compared to 148 losses among those with ferritin ≥15 μg/L. The unadjusted risk ratio for pregnancy loss in the <15 μg/L group was 0.63 (95% CI: 0.34, 1.19). After adjustment for covariates, the association remained similar (adjusted RR = 0.71; 95% CI: 0.37, 1.35). These findings were consistent with the primary analysis, but did not indicate a statistically significant association between low ferritin and pregnancy loss.
+Stratified analyses by parity using the 30 μg/L cutoff revealed differing patterns. Among nulliparous women, pregnancy loss occurred in 17 women with ferritin <30 μg/L and 53 women with ferritin ≥30 μg/L. The adjusted risk ratio was 0.96 (95% CI: 0.58, 1.59), indicating no significant association. In contrast, among parous women, pregnancy loss occurred in 15 women with ferritin <30 μg/L and 72 women with ferritin ≥30 μg/L. Here, lower ferritin was associated with a significantly reduced risk of pregnancy loss (adjusted HR = 0.52; 95% CI: 0.32, 0.87).
+Stratified analyses by BMI category using the 30 μg/L cutoff also showed differing patterns. Among women with BMI <25 kg/m², the adjusted risk ratio was 0.53 (95% CI: 0.32, 0.90). For BMI 25–30 kg/m², the adjusted risk ratio was 0.99 (95% CI: 0.50, 1.97), and for BMI >30 kg/m², it was 0.76 (95% CI: 0.36, 1.64). Confidence intervals included 1 across all strata except for the BMI <25 kg/m² group.
 
 ## Conclusion
 
-This the conclusion. The @sec-results can be invoked here.
+In this study of women with prior pregnancy loss enrolled in the EAGeR trial, lower preconception serum ferritin levels (<30 μg/L) were not associated with an increased risk of miscarriage; in fact, point estimates suggested a modest protective effect, though confidence intervals in the adjusted models were close to the null, indicating uncertainty about the association. Sensitivity analyses using a 15 μg/L cutoff and stratification by parity and BMI revealed potential effect modification: the inverse association was strongest among parous women and those with BMI <25 kg/m². However, these findings should be interpreted cautiously given limited sample sizes and residual confounding. Overall, these results do not support the hypothesis that low preconception ferritin increases miscarriage risk in this population. Future research should explore biological mechanisms underlying these patterns and assess whether iron supplementation strategies should be tailored by parity or BMI.
 
 ## Bibliography
 
@@ -414,3 +420,14 @@ Cappellini, M. D., Santini, V., Braxs, C., & Shander, A. (2022). Iron metabolism
 Petraglia, F., & Dolmans, M. M. (2022). Iron deficiency anemia: Impact on women's reproductive health. Fertility and Sterility, 118(4), 605–606. https://doi.org/10.1016/j.fertnstert.2022.08.850
 
 Mumford, S. L., et al. (2021). Markers of vitamin D metabolism and premenstrual symptoms in healthy women with regular cycles. Human Reproduction, 36(7), 1808–1820. https://doi.org/10.1093/humrep/deab089
+
+American College of Obstetricians and Gynecologists. (2023). Early pregnancy loss. ACOG Practice Bulletin No. 200. https://www.acog.org
+Cappellini, M. D., Santini, V., Braxs, C., & Shander, A. (2022). Iron metabolism and iron deficiency anemia in women. Fertility and Sterility, 118(4), 607–614. https://doi.org/10.1016/j.fertnstert.2022.08.014
+
+World Health Organization. (2020). WHO recommendations on antenatal care for a positive pregnancy experience. Geneva: WHO.
+
+American College of Obstetricians and Gynecologists. (2020). Physical activity and exercise during pregnancy and the postpartum period. ACOG Committee Opinion No. 804.
+
+Centers for Disease Control and Prevention. (2023). Smoking and pregnancy. https://www.cdc.gov/tobacco/basic_information/health_effects/pregnancy/index.htm
+
+Schisterman, E. F., et al. (2014). Preconception low-dose aspirin and pregnancy outcomes: Results from the EAGeR randomized trial. The Lancet, 384(9937), 29–36. https://doi.org/10.1016/S0140-6736(14)60157-4
