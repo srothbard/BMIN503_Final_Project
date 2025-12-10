@@ -37,6 +37,7 @@ Miscarriage, defined as the spontaneous loss of a pregnancy before 20 weeks of g
 **Statistical Analysis** Descriptive statistics summarize the distribution of serum ferritin and covariates. Two versions of Table 1 present baseline characteristics stratified by serum ferritin status (\<30 µg/L vs. ≥30 µg/L; \<15 µg/L vs. ≥15 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This model is chosen because it provides a reliable way to estimate risk ratios directly for binary outcomes, avoiding convergence issues common in log-binomial models. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency and stratifying by potential effect modifiers.
 
 ```{r}
+R_LIBS_USER="C:/Users/sarahrot/AppData/Local/R/win-library/4.5"
 #load packages
 library(labelled)
 library(haven)
@@ -170,6 +171,7 @@ as_gt(tbl1_30) %>%
 
 as_gt(tbl1_15) %>%
   gt::gtsave("Table1_15ferr.docx")
+
 ```
 Among 1,228 participants, 982 had valid serum ferritin levels measured; serum ferritin levels varied across categories. Using the 30 µg/L cutoff, 294 women (29.9%) had ferritin <30 µg/L and 688 (70.1%) had ferritin ≥30 µg/L. Women with ferritin <30 µg/L were more likely to be parous (65% vs. 56%, p=0.013). Income also differed significantly (p=0.011), with a higher proportion of women in the <30 µg/L group reporting income <$40,000 (38% vs. 29%). Other characteristics, including age, BMI, race, prenatal vitamin use, exercise level, aspirin treatment assignment, and smoking status were similar across ferritin categories.
 
@@ -203,6 +205,17 @@ subset_data %>%
     percent = round(100 * n_anyloss / total, 1)
   )
 
+#Plotting pregnancy loss risk by s-ferritin category
+tab <- with(subset_data, tapply(anyloss == 1, ferritin30cat, function(x) mean(x, na.rm = TRUE)))
+n <- with(subset_data, tapply(anyloss, ferritin30cat, function(x) length(x)))
+se <- sqrt(tab * (1 - tab) / n)
+lcl <- pmax(0, tab - 1.96 * se); ucl <- pmin(1, tab + 1.96 * se)
+bp <- barplot(tab, ylim = c(0, max(ucl)*1.1),
+              main = "Pregnancy loss by ferritin category",
+              ylab = "Proportion", col = "darkcyan")
+arrows(bp, lcl, bp, ucl, angle = 90, code = 3, length = 0.05)
+
+
 # Unadjusted model using survey design
 library(survey)
 library(broom) 
@@ -228,7 +241,7 @@ exp(cbind(RR = coef(adjmodel), confint(adjmodel)))
 ```
 
 
-In total, 157 pregnancy losses occurred among 637 women who had serum ferritin measured at baseline, conceived, and have non-missing covariate data. Using the 30 μg/L cutoff, 125 cases occurred among women with ferritin ≥30 μg/L and 32 cases among those with ferritin <30 μg/L. In unadjusted analyses, women with ferritin <30 μg/L had a lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.76; 95% CI: 0.46, 0.94). After adjustment for age, BMI, race, parity, income, smoking status, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.70; 95% CI: 0.49, 1.00).
+In total, 157 pregnancy losses occurred among 637 women who had serum ferritin measured at baseline, conceived, and have non-missing covariate data. Using the 30 μg/L cutoff, 125 cases occurred among women with ferritin ≥30 μg/L and 32 cases among those with ferritin <30 μg/L. As seen in the bar plot, miscarriage proportions differ across ferritin groups with women in the iron deficient group having a lower proportion (17.7%) compared to women who were not iron deficient (27.4%). In unadjusted analyses, women with ferritin <30 μg/L had a lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.76; 95% CI: 0.46, 0.94). After adjustment for age, BMI, race, parity, income, smoking status, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.70; 95% CI: 0.49, 1.00).
 
 ```{r}
 #Sensitivity analyses

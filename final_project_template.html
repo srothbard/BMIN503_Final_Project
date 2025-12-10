@@ -2223,10 +2223,11 @@ vertical-align: -.125em;
 <p><strong>Covariates</strong> Potential confounders were identified through literature review and include: age, Body Mass Index (BMI), race/ethnicity, parity, household income, use of prenatal vitamins, physical activity, smoking status, and aspirin treatment assignment. These covariates are of interest because they may influence both iron status and miscarriage risk. Age is a well-established risk factor for miscarriage and may also affect iron stores. BMI can alter ferritin levels through inflammation and is linked to adverse reproductive outcomes. Race/ethnicity captures biological and social differences that influence diet, iron metabolism, and pregnancy outcomes. Parity reflects prior reproductive history, which can deplete iron stores and affect miscarriage risk. Household income serves as a proxy for socioeconomic status, influencing diet quality and access to care. Prenatal vitamin use is relevant because supplements often contain iron, potentially modifying ferritin levels. Physical activity may impact inflammation and iron metabolism, while extreme activity has been associated with miscarriage. Smoking is included due to its known association with adverse pregnancy outcomes and potential effects on nutrient absorption. Finally, aspirin treatment assignment is controlled for as part of the EAGeR trial design, given its possible influence on implantation and miscarriage risk.</p>
 <p><strong>Statistical Analysis</strong> Descriptive statistics summarize the distribution of serum ferritin and covariates. Two versions of Table 1 present baseline characteristics stratified by serum ferritin status (&lt;30 µg/L vs. ≥30 µg/L; &lt;15 µg/L vs. ≥15 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This model is chosen because it provides a reliable way to estimate risk ratios directly for binary outcomes, avoiding convergence issues common in log-binomial models. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency and stratifying by potential effect modifiers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>R_LIBS_USER<span class="ot">=</span><span class="st">&quot;C:/Users/sarahrot/AppData/Local/R/win-library/4.5&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#load packages</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: &#39;dplyr&#39;</code></pre>
@@ -2365,20 +2366,20 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tbl1_30</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="cdubnpdexz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cdubnpdexz table {
+<div id="iyvtyocnrw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iyvtyocnrw table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#cdubnpdexz thead, #cdubnpdexz tbody, #cdubnpdexz tfoot, #cdubnpdexz tr, #cdubnpdexz td, #cdubnpdexz th {
+#iyvtyocnrw thead, #iyvtyocnrw tbody, #iyvtyocnrw tfoot, #iyvtyocnrw tr, #iyvtyocnrw td, #iyvtyocnrw th {
 border-style: none;
 }
-#cdubnpdexz p {
+#iyvtyocnrw p {
 margin: 0;
 padding: 0;
 }
-#cdubnpdexz .gt_table {
+#iyvtyocnrw .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2403,11 +2404,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#cdubnpdexz .gt_caption {
+#iyvtyocnrw .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#cdubnpdexz .gt_title {
+#iyvtyocnrw .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2418,7 +2419,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#cdubnpdexz .gt_subtitle {
+#iyvtyocnrw .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2429,7 +2430,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#cdubnpdexz .gt_heading {
+#iyvtyocnrw .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2440,12 +2441,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#cdubnpdexz .gt_bottom_border {
+#iyvtyocnrw .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#cdubnpdexz .gt_col_headings {
+#iyvtyocnrw .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2459,7 +2460,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#cdubnpdexz .gt_col_heading {
+#iyvtyocnrw .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2478,7 +2479,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#cdubnpdexz .gt_column_spanner_outer {
+#iyvtyocnrw .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2489,13 +2490,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#cdubnpdexz .gt_column_spanner_outer:first-child {
+#iyvtyocnrw .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#cdubnpdexz .gt_column_spanner_outer:last-child {
+#iyvtyocnrw .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#cdubnpdexz .gt_column_spanner {
+#iyvtyocnrw .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2506,10 +2507,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#cdubnpdexz .gt_spanner_row {
+#iyvtyocnrw .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#cdubnpdexz .gt_group_heading {
+#iyvtyocnrw .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2534,7 +2535,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#cdubnpdexz .gt_empty_group_heading {
+#iyvtyocnrw .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2548,13 +2549,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#cdubnpdexz .gt_from_md > :first-child {
+#iyvtyocnrw .gt_from_md > :first-child {
 margin-top: 0;
 }
-#cdubnpdexz .gt_from_md > :last-child {
+#iyvtyocnrw .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#cdubnpdexz .gt_row {
+#iyvtyocnrw .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2572,7 +2573,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#cdubnpdexz .gt_stub {
+#iyvtyocnrw .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2584,7 +2585,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cdubnpdexz .gt_stub_row_group {
+#iyvtyocnrw .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2597,13 +2598,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#cdubnpdexz .gt_row_group_first td {
+#iyvtyocnrw .gt_row_group_first td {
 border-top-width: 2px;
 }
-#cdubnpdexz .gt_row_group_first th {
+#iyvtyocnrw .gt_row_group_first th {
 border-top-width: 2px;
 }
-#cdubnpdexz .gt_summary_row {
+#iyvtyocnrw .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2612,14 +2613,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cdubnpdexz .gt_first_summary_row {
+#iyvtyocnrw .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#cdubnpdexz .gt_first_summary_row.thick {
+#iyvtyocnrw .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#cdubnpdexz .gt_last_summary_row {
+#iyvtyocnrw .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2628,7 +2629,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#cdubnpdexz .gt_grand_summary_row {
+#iyvtyocnrw .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2637,7 +2638,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cdubnpdexz .gt_first_grand_summary_row {
+#iyvtyocnrw .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2646,7 +2647,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#cdubnpdexz .gt_last_grand_summary_row_top {
+#iyvtyocnrw .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2655,10 +2656,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#cdubnpdexz .gt_striped {
+#iyvtyocnrw .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#cdubnpdexz .gt_table_body {
+#iyvtyocnrw .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2666,7 +2667,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#cdubnpdexz .gt_footnotes {
+#iyvtyocnrw .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2679,7 +2680,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#cdubnpdexz .gt_footnote {
+#iyvtyocnrw .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2687,7 +2688,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cdubnpdexz .gt_sourcenotes {
+#iyvtyocnrw .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2700,64 +2701,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#cdubnpdexz .gt_sourcenote {
+#iyvtyocnrw .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cdubnpdexz .gt_left {
+#iyvtyocnrw .gt_left {
 text-align: left;
 }
-#cdubnpdexz .gt_center {
+#iyvtyocnrw .gt_center {
 text-align: center;
 }
-#cdubnpdexz .gt_right {
+#iyvtyocnrw .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#cdubnpdexz .gt_font_normal {
+#iyvtyocnrw .gt_font_normal {
 font-weight: normal;
 }
-#cdubnpdexz .gt_font_bold {
+#iyvtyocnrw .gt_font_bold {
 font-weight: bold;
 }
-#cdubnpdexz .gt_font_italic {
+#iyvtyocnrw .gt_font_italic {
 font-style: italic;
 }
-#cdubnpdexz .gt_super {
+#iyvtyocnrw .gt_super {
 font-size: 65%;
 }
-#cdubnpdexz .gt_footnote_marks {
+#iyvtyocnrw .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#cdubnpdexz .gt_asterisk {
+#iyvtyocnrw .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#cdubnpdexz .gt_indent_1 {
+#iyvtyocnrw .gt_indent_1 {
 text-indent: 5px;
 }
-#cdubnpdexz .gt_indent_2 {
+#iyvtyocnrw .gt_indent_2 {
 text-indent: 10px;
 }
-#cdubnpdexz .gt_indent_3 {
+#iyvtyocnrw .gt_indent_3 {
 text-indent: 15px;
 }
-#cdubnpdexz .gt_indent_4 {
+#iyvtyocnrw .gt_indent_4 {
 text-indent: 20px;
 }
-#cdubnpdexz .gt_indent_5 {
+#iyvtyocnrw .gt_indent_5 {
 text-indent: 25px;
 }
-#cdubnpdexz .katex-display {
+#iyvtyocnrw .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#cdubnpdexz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#iyvtyocnrw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3005,20 +3006,20 @@ N = 688<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tbl1_15</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="kfsumolzmr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kfsumolzmr table {
+<div id="szneahewzg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#szneahewzg table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#kfsumolzmr thead, #kfsumolzmr tbody, #kfsumolzmr tfoot, #kfsumolzmr tr, #kfsumolzmr td, #kfsumolzmr th {
+#szneahewzg thead, #szneahewzg tbody, #szneahewzg tfoot, #szneahewzg tr, #szneahewzg td, #szneahewzg th {
 border-style: none;
 }
-#kfsumolzmr p {
+#szneahewzg p {
 margin: 0;
 padding: 0;
 }
-#kfsumolzmr .gt_table {
+#szneahewzg .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3043,11 +3044,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#kfsumolzmr .gt_caption {
+#szneahewzg .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#kfsumolzmr .gt_title {
+#szneahewzg .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3058,7 +3059,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#kfsumolzmr .gt_subtitle {
+#szneahewzg .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3069,7 +3070,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#kfsumolzmr .gt_heading {
+#szneahewzg .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3080,12 +3081,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#kfsumolzmr .gt_bottom_border {
+#szneahewzg .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#kfsumolzmr .gt_col_headings {
+#szneahewzg .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3099,7 +3100,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#kfsumolzmr .gt_col_heading {
+#szneahewzg .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3118,7 +3119,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#kfsumolzmr .gt_column_spanner_outer {
+#szneahewzg .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3129,13 +3130,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#kfsumolzmr .gt_column_spanner_outer:first-child {
+#szneahewzg .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#kfsumolzmr .gt_column_spanner_outer:last-child {
+#szneahewzg .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#kfsumolzmr .gt_column_spanner {
+#szneahewzg .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3146,10 +3147,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#kfsumolzmr .gt_spanner_row {
+#szneahewzg .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#kfsumolzmr .gt_group_heading {
+#szneahewzg .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3174,7 +3175,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#kfsumolzmr .gt_empty_group_heading {
+#szneahewzg .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3188,13 +3189,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#kfsumolzmr .gt_from_md > :first-child {
+#szneahewzg .gt_from_md > :first-child {
 margin-top: 0;
 }
-#kfsumolzmr .gt_from_md > :last-child {
+#szneahewzg .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#kfsumolzmr .gt_row {
+#szneahewzg .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3212,7 +3213,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#kfsumolzmr .gt_stub {
+#szneahewzg .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3224,7 +3225,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kfsumolzmr .gt_stub_row_group {
+#szneahewzg .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3237,13 +3238,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#kfsumolzmr .gt_row_group_first td {
+#szneahewzg .gt_row_group_first td {
 border-top-width: 2px;
 }
-#kfsumolzmr .gt_row_group_first th {
+#szneahewzg .gt_row_group_first th {
 border-top-width: 2px;
 }
-#kfsumolzmr .gt_summary_row {
+#szneahewzg .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3252,14 +3253,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kfsumolzmr .gt_first_summary_row {
+#szneahewzg .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#kfsumolzmr .gt_first_summary_row.thick {
+#szneahewzg .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#kfsumolzmr .gt_last_summary_row {
+#szneahewzg .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3268,7 +3269,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#kfsumolzmr .gt_grand_summary_row {
+#szneahewzg .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3277,7 +3278,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kfsumolzmr .gt_first_grand_summary_row {
+#szneahewzg .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3286,7 +3287,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#kfsumolzmr .gt_last_grand_summary_row_top {
+#szneahewzg .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3295,10 +3296,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#kfsumolzmr .gt_striped {
+#szneahewzg .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#kfsumolzmr .gt_table_body {
+#szneahewzg .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3306,7 +3307,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#kfsumolzmr .gt_footnotes {
+#szneahewzg .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3319,7 +3320,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#kfsumolzmr .gt_footnote {
+#szneahewzg .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3327,7 +3328,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kfsumolzmr .gt_sourcenotes {
+#szneahewzg .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3340,64 +3341,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#kfsumolzmr .gt_sourcenote {
+#szneahewzg .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kfsumolzmr .gt_left {
+#szneahewzg .gt_left {
 text-align: left;
 }
-#kfsumolzmr .gt_center {
+#szneahewzg .gt_center {
 text-align: center;
 }
-#kfsumolzmr .gt_right {
+#szneahewzg .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#kfsumolzmr .gt_font_normal {
+#szneahewzg .gt_font_normal {
 font-weight: normal;
 }
-#kfsumolzmr .gt_font_bold {
+#szneahewzg .gt_font_bold {
 font-weight: bold;
 }
-#kfsumolzmr .gt_font_italic {
+#szneahewzg .gt_font_italic {
 font-style: italic;
 }
-#kfsumolzmr .gt_super {
+#szneahewzg .gt_super {
 font-size: 65%;
 }
-#kfsumolzmr .gt_footnote_marks {
+#szneahewzg .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#kfsumolzmr .gt_asterisk {
+#szneahewzg .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#kfsumolzmr .gt_indent_1 {
+#szneahewzg .gt_indent_1 {
 text-indent: 5px;
 }
-#kfsumolzmr .gt_indent_2 {
+#szneahewzg .gt_indent_2 {
 text-indent: 10px;
 }
-#kfsumolzmr .gt_indent_3 {
+#szneahewzg .gt_indent_3 {
 text-indent: 15px;
 }
-#kfsumolzmr .gt_indent_4 {
+#szneahewzg .gt_indent_4 {
 text-indent: 20px;
 }
-#kfsumolzmr .gt_indent_5 {
+#szneahewzg .gt_indent_5 {
 text-indent: 25px;
 }
-#kfsumolzmr .katex-display {
+#szneahewzg .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#kfsumolzmr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#szneahewzg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3686,8 +3687,24 @@ N = 891<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 1 2: ≥30 microgram/L       125   456    27.4
 2 1: &lt;30 microgram/L        32   181    17.7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted model using survey design</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting pregnancy loss risk by s-ferritin category</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">with</span>(subset_data, <span class="fu">tapply</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, ferritin30cat, <span class="cf">function</span>(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">with</span>(subset_data, <span class="fu">tapply</span>(anyloss, ferritin30cat, <span class="cf">function</span>(x) <span class="fu">length</span>(x)))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(tab <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> tab) <span class="sc">/</span> n)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">0</span>, tab <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> se); ucl <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="dv">1</span>, tab <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> se)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">barplot</span>(tab, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(ucl)<span class="sc">*</span><span class="fl">1.1</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">main =</span> <span class="st">&quot;Pregnancy loss by ferritin category&quot;</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">ylab =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkcyan&quot;</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(bp, lcl, bp, ucl, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">code =</span> <span class="dv">3</span>, <span class="at">length =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="data:image/png;base64,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pRJQIhxlQKvjmCbFPPv1ovL77Ej6qKOYBLRYAkqE4wzozbvTxls5T36KuwIBLZWAEuFIA3ozflVP6MnT2DMyCWipBJQIxxrQifHHi1dnZ2dPL94knM9OQEsloEQ44oDeioCWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCGiagpRJQIghomICWSkCJIKBhAloqASWCgIYJaKkElAgCWhkF7Pyj+/4V0isBJYKAVgSUBQElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgElgoCGCWipBJQIAhomoKUSUCIIaJiAlkpAiSCgYQJaKgEl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" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted model using survey design</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: grid</code></pre>
 </div>
@@ -3706,15 +3723,15 @@ Attaching package: &#39;survey&#39;</code></pre>
 
     dotchart</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom) </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> subset_data)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>unadj_model <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">design =</span> design,  <span class="co"># same design object with weights</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unadj_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom) </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> subset_data)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>unadj_model <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">design =</span> design,  <span class="co"># same design object with weights</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unadj_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3734,20 +3751,20 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_model), <span class="fu">confint</span>(unadj_model)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_model), <span class="fu">confint</span>(unadj_model)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                       RR     2.5 %    97.5 %
 (Intercept)                     0.2820795 0.2425405 0.3280641
 ferritin30cat1: &lt;30 microgram/L 0.6573184 0.4620864 0.9350362</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#adjusted model</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>adjmodel <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> parity <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                     income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">design =</span> design,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(adjmodel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#adjusted model</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>adjmodel <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> parity <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                     income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">design =</span> design,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(adjmodel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3782,7 +3799,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adjmodel), <span class="fu">confint</span>(adjmodel)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adjmodel), <span class="fu">confint</span>(adjmodel)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                             RR      2.5 %    97.5 %
 (Intercept)                           0.1330312 0.03775835 0.4686988
@@ -3802,36 +3819,36 @@ Exercise3: High                       1.0162110 0.70340675 1.4681191
 is_treatmentTreatment                 0.8822270 0.67027313 1.1612049</code></pre>
 </div>
 </div>
-<p>In total, 157 pregnancy losses occurred among 637 women who had serum ferritin measured at baseline, conceived, and have non-missing covariate data. Using the 30 μg/L cutoff, 125 cases occurred among women with ferritin ≥30 μg/L and 32 cases among those with ferritin &lt;30 μg/L. In unadjusted analyses, women with ferritin &lt;30 μg/L had a lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.76; 95% CI: 0.46, 0.94). After adjustment for age, BMI, race, parity, income, smoking status, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.70; 95% CI: 0.49, 1.00).</p>
+<p>In total, 157 pregnancy losses occurred among 637 women who had serum ferritin measured at baseline, conceived, and have non-missing covariate data. Using the 30 μg/L cutoff, 125 cases occurred among women with ferritin ≥30 μg/L and 32 cases among those with ferritin &lt;30 μg/L. As seen in the bar plot, miscarriage proportions differ across ferritin groups with women in the iron deficient group having a lower proportion (17.7%) compared to women who were not iron deficient (27.4%). In unadjusted analyses, women with ferritin &lt;30 μg/L had a lower risk of pregnancy loss compared to those with ferritin ≥30 μg/L (RR = 0.76; 95% CI: 0.46, 0.94). After adjustment for age, BMI, race, parity, income, smoking status, prenatal vitamin use, exercise level, and aspirin treatment assignment, the association remained similar (adjusted RR = 0.70; 95% CI: 0.49, 1.00).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sensitivity analyses</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit logistic model for pregnancy (different ferritin cutoff)</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>selection_model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(pptnew <span class="sc">~</span> ferritin15cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> parity <span class="sc">+</span> income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> pretbl1,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">family =</span> binomial)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute predicted probabilities and IP weights</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>senset <span class="ot">&lt;-</span> pretbl1 <span class="sc">%&gt;%</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred_preg =</span> <span class="fu">predict</span>(selection_model2, <span class="at">newdata =</span> pretbl1, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>),</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">ipw =</span> <span class="fu">ifelse</span>(pptnew <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span> <span class="sc">/</span> pred_preg, <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pred_preg)))</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter dataset for those who got pregnant</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># and set level 2 as reference for ferritin15cat</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>subset_data2 <span class="ot">&lt;-</span> senset <span class="sc">%&gt;%</span></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pptnew <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ferritin15cat =</span> <span class="fu">relevel</span>(ferritin15cat, <span class="at">ref =</span> <span class="st">&quot;2: ≥15 microgram/L&quot;</span>))</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>subset_data2 <span class="ot">&lt;-</span> subset_data2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ipw))</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Cases in each group</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>subset_data2 <span class="sc">%&gt;%</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ferritin15cat) <span class="sc">%&gt;%</span></span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sensitivity analyses</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit logistic model for pregnancy (different ferritin cutoff)</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>selection_model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(pptnew <span class="sc">~</span> ferritin15cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> parity <span class="sc">+</span> income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> pretbl1,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">family =</span> binomial)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute predicted probabilities and IP weights</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>senset <span class="ot">&lt;-</span> pretbl1 <span class="sc">%&gt;%</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred_preg =</span> <span class="fu">predict</span>(selection_model2, <span class="at">newdata =</span> pretbl1, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>),</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">ipw =</span> <span class="fu">ifelse</span>(pptnew <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span> <span class="sc">/</span> pred_preg, <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pred_preg)))</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter dataset for those who got pregnant</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># and set level 2 as reference for ferritin15cat</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>subset_data2 <span class="ot">&lt;-</span> senset <span class="sc">%&gt;%</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pptnew <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ferritin15cat =</span> <span class="fu">relevel</span>(ferritin15cat, <span class="at">ref =</span> <span class="st">&quot;2: ≥15 microgram/L&quot;</span>))</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>subset_data2 <span class="ot">&lt;-</span> subset_data2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ipw))</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Cases in each group</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>subset_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ferritin15cat) <span class="sc">%&gt;%</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   ferritin15cat      n_anyloss total percent
@@ -3839,14 +3856,14 @@ is_treatmentTreatment                 0.8822270 0.67027313 1.1612049</code></pre
 1 2: ≥15 microgram/L       148   585    25.3
 2 1: &lt;15 microgram/L         9    52    17.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted model using survey design</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>design2 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> subset_data2)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>unadj_model2 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin15cat,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">design =</span> design2,  <span class="co"># same design object with weights</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unadj_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted model using survey design</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>design2 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> subset_data2)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>unadj_model2 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin15cat,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">design =</span> design2,  <span class="co"># same design object with weights</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unadj_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3866,20 +3883,20 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_model2), <span class="fu">confint</span>(unadj_model2)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_model2), <span class="fu">confint</span>(unadj_model2)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                       RR     2.5 %   97.5 %
 (Intercept)                     0.2622218 0.2278264 0.301810
 ferritin15cat1: &lt;15 microgram/L 0.6343188 0.3390141 1.186854</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#adjusted model</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>adjmodel2 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin15cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> parity <span class="sc">+</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                     income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">design =</span> design2,</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(adjmodel2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#adjusted model</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>adjmodel2 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin15cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> parity <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                     income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">design =</span> design2,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(adjmodel2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3914,7 +3931,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adjmodel2), <span class="fu">confint</span>(adjmodel2)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adjmodel2), <span class="fu">confint</span>(adjmodel2)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                             RR      2.5 %    97.5 %
 (Intercept)                           0.1190593 0.03446212 0.4113249
@@ -3933,11 +3950,11 @@ Exercise2: Moderate                   0.9812051 0.69570562 1.3838661
 Exercise3: High                       1.0207588 0.70717371 1.4733984
 is_treatmentTreatment                 0.8742781 0.66459362 1.1501197</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted model with interaction between ferritin and parity</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>interaction_model <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">*</span> parity <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">design =</span> design,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(interaction_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted model with interaction between ferritin and parity</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>interaction_model <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">*</span> parity <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span> income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">design =</span> design,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(interaction_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3990,22 +4007,22 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#significant p-value; potential effect modification by parity</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Stratification of primary model by parity</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data by parity</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>nulliparous_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parity <span class="sc">==</span> <span class="st">&quot;0: Nulliparous&quot;</span>)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>parous_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parity <span class="sc">==</span> <span class="st">&quot;1: Parous&quot;</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Cases in each group</span></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>nulliparous_data <span class="sc">%&gt;%</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ferritin30cat) <span class="sc">%&gt;%</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#significant p-value; potential effect modification by parity</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Stratification of primary model by parity</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data by parity</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>nulliparous_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parity <span class="sc">==</span> <span class="st">&quot;0: Nulliparous&quot;</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>parous_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parity <span class="sc">==</span> <span class="st">&quot;1: Parous&quot;</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Cases in each group</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>nulliparous_data <span class="sc">%&gt;%</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ferritin30cat) <span class="sc">%&gt;%</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   ferritin30cat      n_anyloss total percent
@@ -4013,13 +4030,13 @@ Number of Fisher Scoring iterations: 5</code></pre>
 1 2: ≥30 microgram/L        53   178    29.8
 2 1: &lt;30 microgram/L        17    61    27.9</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>parous_data <span class="sc">%&gt;%</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ferritin30cat) <span class="sc">%&gt;%</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>parous_data <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ferritin30cat) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   ferritin30cat      n_anyloss total percent
@@ -4027,45 +4044,45 @@ Number of Fisher Scoring iterations: 5</code></pre>
 1 2: ≥30 microgram/L        72   278    25.9
 2 1: &lt;30 microgram/L        15   120    12.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create survey designs for each stratum</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>design_nulliparous <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> nulliparous_data)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>design_parous <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> parous_data)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted models</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>unadj_nulliparous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat,</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">design =</span> design_nulliparous,</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>unadj_parous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat,</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">design =</span> design_parous,</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Summaries and exponentiated coefficients</span></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_nulliparous), <span class="fu">confint</span>(unadj_nulliparous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create survey designs for each stratum</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>design_nulliparous <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> nulliparous_data)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>design_parous <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> parous_data)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted models</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>unadj_nulliparous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat,</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">design =</span> design_nulliparous,</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>unadj_parous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat,</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">design =</span> design_parous,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Summaries and exponentiated coefficients</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_nulliparous), <span class="fu">confint</span>(unadj_nulliparous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                       RR     2.5 %    97.5 %
 (Intercept)                     0.3106990 0.2473178 0.3903233
 ferritin30cat1: &lt;30 microgram/L 0.8827893 0.5483397 1.4212302</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_parous), <span class="fu">confint</span>(unadj_parous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(unadj_parous), <span class="fu">confint</span>(unadj_parous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                       RR     2.5 %    97.5 %
 (Intercept)                     0.2608108 0.2133226 0.3188706
 ferritin30cat1: &lt;30 microgram/L 0.5037217 0.2994834 0.8472444</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted models</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>adj_nulliparous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>                             income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">design =</span> design_nulliparous,</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>adj_parous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>                        income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">design =</span> design_parous,</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Summaries and exponentiated coefficients</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adj_nulliparous), <span class="fu">confint</span>(adj_nulliparous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted models</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>adj_nulliparous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>                             income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">design =</span> design_nulliparous,</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>adj_parous <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> bmicat <span class="sc">+</span> white <span class="sc">+</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>                        income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">design =</span> design_parous,</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Summaries and exponentiated coefficients</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adj_nulliparous), <span class="fu">confint</span>(adj_nulliparous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                             RR      2.5 %   97.5 %
 (Intercept)                           0.3651795 0.05728351 2.328001
@@ -4083,7 +4100,7 @@ Exercise2: Moderate                   0.8848707 0.55023657 1.423017
 Exercise3: High                       0.7200873 0.39876549 1.300327
 is_treatmentTreatment                 0.8082281 0.54097324 1.207514</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adj_parous), <span class="fu">confint</span>(adj_parous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(adj_parous), <span class="fu">confint</span>(adj_parous)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                              RR       2.5 %    97.5 %
 (Intercept)                           0.02264687 0.004016558 0.1276916
@@ -4101,25 +4118,25 @@ Exercise2: Moderate                   1.02010204 0.625292035 1.6641955
 Exercise3: High                       1.36512941 0.864941098 2.1545725
 is_treatmentTreatment                 0.95621178 0.662666126 1.3797913</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BMI STRATIFICATION</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data by BMI category and drop unused levels</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>bmicat1_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bmicat <span class="sc">==</span> <span class="st">&quot;1: &lt;25&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>()</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>bmicat2_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bmicat <span class="sc">==</span> <span class="st">&quot;2: 25–30&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>()</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>bmicat3_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bmicat <span class="sc">==</span> <span class="st">&quot;3: &gt;30&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>()</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Cases in each group</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (df <span class="cf">in</span> <span class="fu">list</span>(bmicat1_data, bmicat2_data, bmicat3_data)) {</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(</span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(ferritin30cat) <span class="sc">%&gt;%</span></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(</span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BMI STRATIFICATION</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data by BMI category and drop unused levels</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>bmicat1_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bmicat <span class="sc">==</span> <span class="st">&quot;1: &lt;25&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>()</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>bmicat2_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bmicat <span class="sc">==</span> <span class="st">&quot;2: 25–30&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>()</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>bmicat3_data <span class="ot">&lt;-</span> subset_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bmicat <span class="sc">==</span> <span class="st">&quot;3: &gt;30&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>()</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Cases in each group</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (df <span class="cf">in</span> <span class="fu">list</span>(bmicat1_data, bmicat2_data, bmicat3_data)) {</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(ferritin30cat) <span class="sc">%&gt;%</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_anyloss =</span> <span class="fu">sum</span>(anyloss <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">percent =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> n_anyloss <span class="sc">/</span> total, <span class="dv">1</span>)</span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   ferritin30cat      n_anyloss total percent
@@ -4137,39 +4154,39 @@ is_treatmentTreatment                 0.95621178 0.662666126 1.3797913</code></p
 1 2: ≥30 microgram/L        32    92    34.8
 2 1: &lt;30 microgram/L         6    29    20.7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create survey designs</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>design_bmicat1 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> bmicat1_data)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>design_bmicat2 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> bmicat2_data)</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>design_bmicat3 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> bmicat3_data)</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fit model only if ferritin30cat has ≥2 levels</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(formula, design, data) {</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nlevels</span>(data<span class="sc">$</span>ferritin30cat) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(formula, <span class="at">design =</span> design, <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(model), <span class="fu">confint</span>(model))))</span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">data.frame</span>(<span class="at">message =</span> <span class="st">&quot;Not enough levels of ferritin30cat&quot;</span>))</span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted models</span></span>
-<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>unadj_bmicat1 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat, design_bmicat1, bmicat1_data)</span>
-<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>unadj_bmicat2 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat, design_bmicat2, bmicat2_data)</span>
-<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>unadj_bmicat3 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat, design_bmicat3, bmicat3_data)</span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted models</span></span>
-<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>adj_bmicat1 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> parity <span class="sc">+</span> white <span class="sc">+</span></span>
-<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>                           income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a>                         design_bmicat1, bmicat1_data)</span>
-<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a>adj_bmicat2 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> parity <span class="sc">+</span> white <span class="sc">+</span></span>
-<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>                           income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>                         design_bmicat2, bmicat2_data)</span>
-<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a>adj_bmicat3 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> parity <span class="sc">+</span> white <span class="sc">+</span></span>
-<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a>                           income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
-<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a>                         design_bmicat3, bmicat3_data)</span>
-<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-32"><a href="#cb55-32" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
-<span id="cb55-33"><a href="#cb55-33" aria-hidden="true" tabindex="-1"></a>unadj_bmicat1; unadj_bmicat2; unadj_bmicat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create survey designs</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>design_bmicat1 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> bmicat1_data)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>design_bmicat2 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> bmicat2_data)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>design_bmicat3 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>ipw, <span class="at">data =</span> bmicat3_data)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fit model only if ferritin30cat has ≥2 levels</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(formula, design, data) {</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nlevels</span>(data<span class="sc">$</span>ferritin30cat) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(formula, <span class="at">design =</span> design, <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RR =</span> <span class="fu">coef</span>(model), <span class="fu">confint</span>(model))))</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">data.frame</span>(<span class="at">message =</span> <span class="st">&quot;Not enough levels of ferritin30cat&quot;</span>))</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted models</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>unadj_bmicat1 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat, design_bmicat1, bmicat1_data)</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>unadj_bmicat2 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat, design_bmicat2, bmicat2_data)</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>unadj_bmicat3 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat, design_bmicat3, bmicat3_data)</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted models</span></span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>adj_bmicat1 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> parity <span class="sc">+</span> white <span class="sc">+</span></span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>                           income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>                         design_bmicat1, bmicat1_data)</span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>adj_bmicat2 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> parity <span class="sc">+</span> white <span class="sc">+</span></span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>                           income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>                         design_bmicat2, bmicat2_data)</span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a>adj_bmicat3 <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(anyloss <span class="sc">~</span> ferritin30cat <span class="sc">+</span> age <span class="sc">+</span> parity <span class="sc">+</span> white <span class="sc">+</span></span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>                           income <span class="sc">+</span> smoking <span class="sc">+</span> take_vitamins <span class="sc">+</span> Exercise <span class="sc">+</span> is_treatment,</span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>                         design_bmicat3, bmicat3_data)</span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a>unadj_bmicat1; unadj_bmicat2; unadj_bmicat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                       RR     2.5 %    97.5 %
 (Intercept)                     0.2714152 0.2218103 0.3321136
@@ -4185,7 +4202,7 @@ ferritin30cat1: &lt;30 microgram/L 0.9758705 0.5129501 1.8565613</code></pre>
 (Intercept)                     0.3492611 0.2614464 0.4665709
 ferritin30cat1: &lt;30 microgram/L 0.6223251 0.2846899 1.3603874</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>adj_bmicat1; adj_bmicat2; adj_bmicat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>adj_bmicat1; adj_bmicat2; adj_bmicat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                             RR     2.5 %    97.5 %
 (Intercept)                           0.8761070 0.1776412 4.3208639
