@@ -22,4 +22,4 @@ final_project_template.qmd which contains all of my code for the analyses and wr
 Table1_30ferr.docx which contains table 1 (based on 30 microgram/L ferritin cutpoint)
 Table1_15ferr.docx which contains table 1 (based on 15 microgram/L ferritin cutpoint)
 Table2.docx which contains the results of the primary analysis
-Sensitivity_analysis.docx which contains the results from the sensitivity analyses using the WHO ferritin cutpoint and stratification by parity
+Sensitivity_analyses.docx which contains the results from the sensitivity analyses using the WHO ferritin cutpoint, stratification by parity, and stratification by BMI

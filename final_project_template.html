@@ -2219,7 +2219,7 @@ vertical-align: -.125em;
 <h2 data-number="3" class="anchored" data-anchor-id="sec-methods"><span class="header-section-number">3</span> Methods</h2>
 <p><strong>Study Population</strong> This study utilizes data from the Effects of Aspirin in Gestation and Reproduction (EAGeR) trial, a multi-site randomized controlled trial designed to evaluate the impact of low-dose aspirin on reproductive outcomes. The analytic sample includes 1,228 women aged 18–40 years who had experienced one or two prior pregnancy losses and were actively attempting to conceive. Participants were followed until miscarriage or birth occurred, with pregnancy outcomes tracked in gestational weeks.</p>
 <p><strong>Exposure Assessment</strong> The primary exposure of interest is iron status, measured via serum ferritin concentrations at baseline (preconception). Serum ferritin was assessed using standardized immunoassays, with quality control procedures including re-testing of samples to ensure reliability. Serum ferritin is selected as the primary biomarker due to its clinical relevance and widespread use in assessing iron stores. Iron deficiency is commonly defined as serum ferritin &lt;15 µg/L by the World Health Organization (WHO), but recent literature suggests a cutoff of &lt;30 µg/L may improve sensitivity and specificity in both healthy and clinical populations. Ferritin levels are dichotomized at the &lt;30 µg/L threshold for analysis.</p>
-<p><strong>Outcome Measurement</strong> The primary outcome is miscarriage, defined as a chemical or clinical loss of pregnancy.</p>
+<p><strong>Outcome Measurement</strong> The primary outcome is miscarriage, defined as a chemical or clinical loss of pregnancy (before 20 weeks of gestation).</p>
 <p><strong>Covariates</strong> Potential confounders were identified through literature review and include: age, Body Mass Index (BMI), race/ethnicity, parity, household income, use of prenatal vitamins, physical activity, smoking status, and aspirin treatment assignment. These covariates are of interest because they may influence both iron status and miscarriage risk. Age is a well-established risk factor for miscarriage and may also affect iron stores. BMI can alter ferritin levels through inflammation and is linked to adverse reproductive outcomes. Race/ethnicity captures biological and social differences that influence diet, iron metabolism, and pregnancy outcomes. Parity reflects prior reproductive history, which can deplete iron stores and affect miscarriage risk. Household income serves as a proxy for socioeconomic status, influencing diet quality and access to care. Prenatal vitamin use is relevant because supplements often contain iron, potentially modifying ferritin levels. Physical activity may impact inflammation and iron metabolism, while extreme activity has been associated with miscarriage. Smoking is included due to its known association with adverse pregnancy outcomes and potential effects on nutrient absorption. Finally, aspirin treatment assignment is controlled for as part of the EAGeR trial design, given its possible influence on implantation and miscarriage risk.</p>
 <p><strong>Statistical Analysis</strong> Descriptive statistics summarize the distribution of serum ferritin and covariates. Two versions of Table 1 present baseline characteristics stratified by serum ferritin status (&lt;30 µg/L vs. ≥30 µg/L; &lt;15 µg/L vs. ≥15 µg/L). Risk ratios are estimated using a Poisson regression model with a log link and robust standard errors, implemented via the survey package (svyglm) in R. This model is chosen because it provides a reliable way to estimate risk ratios directly for binary outcomes, avoiding convergence issues common in log-binomial models. Initial models are unadjusted, followed by adjusted models incorporating identified covariates. Inverse probability weights were applied to account for selection into pregnancy. Sensitivity analyses explore the use of the WHO ferritin cutoff as an alternative metric for iron deficiency and stratifying by potential effect modifiers.</p>
 <div class="cell">
@@ -2365,20 +2365,20 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tbl1_30</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="izpwvievhj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#izpwvievhj table {
+<div id="cdubnpdexz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cdubnpdexz table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#izpwvievhj thead, #izpwvievhj tbody, #izpwvievhj tfoot, #izpwvievhj tr, #izpwvievhj td, #izpwvievhj th {
+#cdubnpdexz thead, #cdubnpdexz tbody, #cdubnpdexz tfoot, #cdubnpdexz tr, #cdubnpdexz td, #cdubnpdexz th {
 border-style: none;
 }
-#izpwvievhj p {
+#cdubnpdexz p {
 margin: 0;
 padding: 0;
 }
-#izpwvievhj .gt_table {
+#cdubnpdexz .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2403,11 +2403,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#izpwvievhj .gt_caption {
+#cdubnpdexz .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#izpwvievhj .gt_title {
+#cdubnpdexz .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2418,7 +2418,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#izpwvievhj .gt_subtitle {
+#cdubnpdexz .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2429,7 +2429,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#izpwvievhj .gt_heading {
+#cdubnpdexz .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2440,12 +2440,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#izpwvievhj .gt_bottom_border {
+#cdubnpdexz .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#izpwvievhj .gt_col_headings {
+#cdubnpdexz .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2459,7 +2459,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#izpwvievhj .gt_col_heading {
+#cdubnpdexz .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2478,7 +2478,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#izpwvievhj .gt_column_spanner_outer {
+#cdubnpdexz .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2489,13 +2489,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#izpwvievhj .gt_column_spanner_outer:first-child {
+#cdubnpdexz .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#izpwvievhj .gt_column_spanner_outer:last-child {
+#cdubnpdexz .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#izpwvievhj .gt_column_spanner {
+#cdubnpdexz .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2506,10 +2506,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#izpwvievhj .gt_spanner_row {
+#cdubnpdexz .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#izpwvievhj .gt_group_heading {
+#cdubnpdexz .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2534,7 +2534,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#izpwvievhj .gt_empty_group_heading {
+#cdubnpdexz .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2548,13 +2548,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#izpwvievhj .gt_from_md > :first-child {
+#cdubnpdexz .gt_from_md > :first-child {
 margin-top: 0;
 }
-#izpwvievhj .gt_from_md > :last-child {
+#cdubnpdexz .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#izpwvievhj .gt_row {
+#cdubnpdexz .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2572,7 +2572,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#izpwvievhj .gt_stub {
+#cdubnpdexz .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2584,7 +2584,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#izpwvievhj .gt_stub_row_group {
+#cdubnpdexz .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2597,13 +2597,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#izpwvievhj .gt_row_group_first td {
+#cdubnpdexz .gt_row_group_first td {
 border-top-width: 2px;
 }
-#izpwvievhj .gt_row_group_first th {
+#cdubnpdexz .gt_row_group_first th {
 border-top-width: 2px;
 }
-#izpwvievhj .gt_summary_row {
+#cdubnpdexz .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2612,14 +2612,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#izpwvievhj .gt_first_summary_row {
+#cdubnpdexz .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#izpwvievhj .gt_first_summary_row.thick {
+#cdubnpdexz .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#izpwvievhj .gt_last_summary_row {
+#cdubnpdexz .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2628,7 +2628,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#izpwvievhj .gt_grand_summary_row {
+#cdubnpdexz .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2637,7 +2637,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#izpwvievhj .gt_first_grand_summary_row {
+#cdubnpdexz .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2646,7 +2646,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#izpwvievhj .gt_last_grand_summary_row_top {
+#cdubnpdexz .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2655,10 +2655,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#izpwvievhj .gt_striped {
+#cdubnpdexz .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#izpwvievhj .gt_table_body {
+#cdubnpdexz .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2666,7 +2666,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#izpwvievhj .gt_footnotes {
+#cdubnpdexz .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2679,7 +2679,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#izpwvievhj .gt_footnote {
+#cdubnpdexz .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2687,7 +2687,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#izpwvievhj .gt_sourcenotes {
+#cdubnpdexz .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2700,64 +2700,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#izpwvievhj .gt_sourcenote {
+#cdubnpdexz .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#izpwvievhj .gt_left {
+#cdubnpdexz .gt_left {
 text-align: left;
 }
-#izpwvievhj .gt_center {
+#cdubnpdexz .gt_center {
 text-align: center;
 }
-#izpwvievhj .gt_right {
+#cdubnpdexz .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#izpwvievhj .gt_font_normal {
+#cdubnpdexz .gt_font_normal {
 font-weight: normal;
 }
-#izpwvievhj .gt_font_bold {
+#cdubnpdexz .gt_font_bold {
 font-weight: bold;
 }
-#izpwvievhj .gt_font_italic {
+#cdubnpdexz .gt_font_italic {
 font-style: italic;
 }
-#izpwvievhj .gt_super {
+#cdubnpdexz .gt_super {
 font-size: 65%;
 }
-#izpwvievhj .gt_footnote_marks {
+#cdubnpdexz .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#izpwvievhj .gt_asterisk {
+#cdubnpdexz .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#izpwvievhj .gt_indent_1 {
+#cdubnpdexz .gt_indent_1 {
 text-indent: 5px;
 }
-#izpwvievhj .gt_indent_2 {
+#cdubnpdexz .gt_indent_2 {
 text-indent: 10px;
 }
-#izpwvievhj .gt_indent_3 {
+#cdubnpdexz .gt_indent_3 {
 text-indent: 15px;
 }
-#izpwvievhj .gt_indent_4 {
+#cdubnpdexz .gt_indent_4 {
 text-indent: 20px;
 }
-#izpwvievhj .gt_indent_5 {
+#cdubnpdexz .gt_indent_5 {
 text-indent: 25px;
 }
-#izpwvievhj .katex-display {
+#cdubnpdexz .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#izpwvievhj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cdubnpdexz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3005,20 +3005,20 @@ N = 688<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tbl1_15</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ptpqwbphbm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ptpqwbphbm table {
+<div id="kfsumolzmr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kfsumolzmr table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#ptpqwbphbm thead, #ptpqwbphbm tbody, #ptpqwbphbm tfoot, #ptpqwbphbm tr, #ptpqwbphbm td, #ptpqwbphbm th {
+#kfsumolzmr thead, #kfsumolzmr tbody, #kfsumolzmr tfoot, #kfsumolzmr tr, #kfsumolzmr td, #kfsumolzmr th {
 border-style: none;
 }
-#ptpqwbphbm p {
+#kfsumolzmr p {
 margin: 0;
 padding: 0;
 }
-#ptpqwbphbm .gt_table {
+#kfsumolzmr .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3043,11 +3043,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_caption {
+#kfsumolzmr .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#ptpqwbphbm .gt_title {
+#kfsumolzmr .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3058,7 +3058,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ptpqwbphbm .gt_subtitle {
+#kfsumolzmr .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3069,7 +3069,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ptpqwbphbm .gt_heading {
+#kfsumolzmr .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3080,12 +3080,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_bottom_border {
+#kfsumolzmr .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_col_headings {
+#kfsumolzmr .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3099,7 +3099,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_col_heading {
+#kfsumolzmr .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3118,7 +3118,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ptpqwbphbm .gt_column_spanner_outer {
+#kfsumolzmr .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3129,13 +3129,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ptpqwbphbm .gt_column_spanner_outer:first-child {
+#kfsumolzmr .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ptpqwbphbm .gt_column_spanner_outer:last-child {
+#kfsumolzmr .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ptpqwbphbm .gt_column_spanner {
+#kfsumolzmr .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3146,10 +3146,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ptpqwbphbm .gt_spanner_row {
+#kfsumolzmr .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#ptpqwbphbm .gt_group_heading {
+#kfsumolzmr .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3174,7 +3174,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#ptpqwbphbm .gt_empty_group_heading {
+#kfsumolzmr .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3188,13 +3188,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ptpqwbphbm .gt_from_md > :first-child {
+#kfsumolzmr .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ptpqwbphbm .gt_from_md > :last-child {
+#kfsumolzmr .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ptpqwbphbm .gt_row {
+#kfsumolzmr .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3212,7 +3212,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ptpqwbphbm .gt_stub {
+#kfsumolzmr .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3224,7 +3224,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ptpqwbphbm .gt_stub_row_group {
+#kfsumolzmr .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3237,13 +3237,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ptpqwbphbm .gt_row_group_first td {
+#kfsumolzmr .gt_row_group_first td {
 border-top-width: 2px;
 }
-#ptpqwbphbm .gt_row_group_first th {
+#kfsumolzmr .gt_row_group_first th {
 border-top-width: 2px;
 }
-#ptpqwbphbm .gt_summary_row {
+#kfsumolzmr .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3252,14 +3252,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ptpqwbphbm .gt_first_summary_row {
+#kfsumolzmr .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_first_summary_row.thick {
+#kfsumolzmr .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ptpqwbphbm .gt_last_summary_row {
+#kfsumolzmr .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3268,7 +3268,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_grand_summary_row {
+#kfsumolzmr .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3277,7 +3277,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ptpqwbphbm .gt_first_grand_summary_row {
+#kfsumolzmr .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3286,7 +3286,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_last_grand_summary_row_top {
+#kfsumolzmr .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3295,10 +3295,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_striped {
+#kfsumolzmr .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ptpqwbphbm .gt_table_body {
+#kfsumolzmr .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3306,7 +3306,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_footnotes {
+#kfsumolzmr .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3319,7 +3319,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_footnote {
+#kfsumolzmr .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3327,7 +3327,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ptpqwbphbm .gt_sourcenotes {
+#kfsumolzmr .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3340,64 +3340,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ptpqwbphbm .gt_sourcenote {
+#kfsumolzmr .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ptpqwbphbm .gt_left {
+#kfsumolzmr .gt_left {
 text-align: left;
 }
-#ptpqwbphbm .gt_center {
+#kfsumolzmr .gt_center {
 text-align: center;
 }
-#ptpqwbphbm .gt_right {
+#kfsumolzmr .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ptpqwbphbm .gt_font_normal {
+#kfsumolzmr .gt_font_normal {
 font-weight: normal;
 }
-#ptpqwbphbm .gt_font_bold {
+#kfsumolzmr .gt_font_bold {
 font-weight: bold;
 }
-#ptpqwbphbm .gt_font_italic {
+#kfsumolzmr .gt_font_italic {
 font-style: italic;
 }
-#ptpqwbphbm .gt_super {
+#kfsumolzmr .gt_super {
 font-size: 65%;
 }
-#ptpqwbphbm .gt_footnote_marks {
+#kfsumolzmr .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#ptpqwbphbm .gt_asterisk {
+#kfsumolzmr .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ptpqwbphbm .gt_indent_1 {
+#kfsumolzmr .gt_indent_1 {
 text-indent: 5px;
 }
-#ptpqwbphbm .gt_indent_2 {
+#kfsumolzmr .gt_indent_2 {
 text-indent: 10px;
 }
-#ptpqwbphbm .gt_indent_3 {
+#kfsumolzmr .gt_indent_3 {
 text-indent: 15px;
 }
-#ptpqwbphbm .gt_indent_4 {
+#kfsumolzmr .gt_indent_4 {
 text-indent: 20px;
 }
-#ptpqwbphbm .gt_indent_5 {
+#kfsumolzmr .gt_indent_5 {
 text-indent: 25px;
 }
-#ptpqwbphbm .katex-display {
+#kfsumolzmr .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#ptpqwbphbm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kfsumolzmr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -4239,7 +4239,7 @@ is_treatmentTreatment                 9.368604e-01 5.379013e-01 1.631726e+00</co
 </section>
 <section id="conclusion" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5</span> Conclusion</h2>
-<p>In this study of women with prior pregnancy loss enrolled in the EAGeR trial, lower preconception serum ferritin levels (&lt;30 μg/L) were not associated with an increased risk of miscarriage; in fact, point estimates suggested a modest protective effect, though confidence intervals in the adjusted models were close to the null, indicating uncertainty about the association. Sensitivity analyses using a 15 μg/L cutoff and stratification by parity and BMI revealed potential effect modification: the inverse association was strongest among parous women and those with BMI &lt;25 kg/m². However, these findings should be interpreted cautiously given limited sample sizes and residual confounding. Overall, these results do not support the hypothesis that low preconception ferritin increases miscarriage risk in this population. Future research should explore biological mechanisms underlying these patterns and assess whether iron supplementation strategies should be tailored by parity or BMI.</p>
+<p>In this study of women with prior pregnancy loss enrolled in the EAGeR trial, lower preconception serum ferritin levels (&lt;30 μg/L) were not associated with an increased risk of miscarriage; in fact, point estimates suggested a modest protective effect, though confidence intervals in the adjusted models were close to the null, indicating uncertainty about the association. Sensitivity analyses using a 15 μg/L cutoff and stratification by parity and BMI revealed potential effect modification: the inverse association was strongest among parous women and those with BMI &lt;25 kg/m². However, these findings should be interpreted cautiously given limited sample sizes and residual confounding. For instance, within this trial, no data was collected on dietary intake or supplement use, both of which can significantly influence iron status. Overall, the results do not support the hypothesis that low preconception ferritin increases miscarriage risk in this population. Future research should explore biological mechanisms underlying these patterns and assess whether iron supplementation strategies should be tailored by parity or BMI.</p>
 </section>
 <section id="bibliography" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="bibliography"><span class="header-section-number">6</span> Bibliography</h2>
